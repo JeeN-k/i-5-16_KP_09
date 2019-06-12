@@ -79,8 +79,7 @@ namespace TryFasterClient
                         try
                         {
                             logchk = 0;
-                            DBConAct.AppUser_Insert(tbLoginClient.Text, Crypt.GetHash(tbPassCleint.Text), 1); // добавляет зарегестрированные данные в бд 
-                            DBConAct.cmd.CommandType = System.Data.CommandType.Text;
+                            DBConAct.AppUser_Insert(tbLoginClient.Text, Crypt.GetHash(tbPassCleint.Password), 1); // добавляет зарегестрированные данные в бд                             
                             DBConAct.cmd.CommandText = "select id_appuser from [appuser] where [User_login] = '" + tbLoginClient.Text + "'";
                             logchk = Convert.ToInt32(DBConAct.execScalar());
                             if (logchk != 0)
@@ -103,8 +102,9 @@ namespace TryFasterClient
         private void TbEmailClient_TextChanged(object sender, TextChangedEventArgs e)
         {
             string patEm = @"^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$";
-            if (!Regex.IsMatch(tbEmailClient.Text, patEm, RegexOptions.IgnoreCase) || tbLoginClient.Text == "" || tbPassCleint.Text == "" || tbPassCheckClient.Text == "" || tbSurnClient.Text == ""
-                || tbNameClient.Text == "" || tbEmailClient.Text == "" || tbMobNum.Text == "")
+            if (!Regex.IsMatch(tbEmailClient.Text, patEm, RegexOptions.IgnoreCase) || tbLoginClient.Text == "" ||
+                tbPassCleint.Text == "" || tbPassCheckClient.Text == "" || tbSurnClient.Text == ""
+                || tbNameClient.Text == "" || tbEmailClient.Text == "" || tbMobNum.Text == "" || tbMobNum.Text[15] == '_' || tbPassCleint.Text != tbPassCheckClient.Text)
                 BtnReg.IsEnabled = false;
             else BtnReg.IsEnabled = true;
         }

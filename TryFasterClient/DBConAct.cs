@@ -19,6 +19,7 @@ namespace TryFasterClient
         public static string execScalar()
         {
             sql.Open();
+            cmd.CommandType = System.Data.CommandType.Text;
             string scalar = cmd.ExecuteScalar().ToString();
             sql.Close();
             return scalar;
@@ -32,7 +33,7 @@ namespace TryFasterClient
             {
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@user_Login", UserLogin);
-                cmd.Parameters.AddWithValue("@User_Pass", UserPass);
+                cmd.Parameters.AddWithValue("@User_Pass", Crypt.GetHash(UserPass));
                 cmd.Parameters.AddWithValue("@Role_Id", Role_id);
                 sql.Open();
                 cmd.ExecuteNonQuery();
@@ -56,7 +57,7 @@ namespace TryFasterClient
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@ID_User", Id_User);
                 cmd.Parameters.AddWithValue("@Log", Log);
-                cmd.Parameters.AddWithValue("@Pass", Pass);
+                cmd.Parameters.AddWithValue("@Pass", Crypt.GetHash(Pass));
                 cmd.Parameters.AddWithValue("@RI", Id_Role);
                 sql.Open();
                 cmd.ExecuteNonQuery();
@@ -188,7 +189,7 @@ namespace TryFasterClient
         }
 
         //Вызов процедуры обновления данных в таблице "Client"
-        public static void Client_Update(Int32 Id_Client, string SC, string NC, string Mc, string MNC, string EC, int AU)
+        public static void Client_Update(Int32 Id_Client, string SC, string NC, string MNC, string EC, int AU)
         {
             spConfiguration("Client_Update");
             try
@@ -196,8 +197,7 @@ namespace TryFasterClient
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@ID_Client", Id_Client);
                 cmd.Parameters.AddWithValue("@SC", SC);
-                cmd.Parameters.AddWithValue("@NC", NC);
-                cmd.Parameters.AddWithValue("@MC", Mc);
+                cmd.Parameters.AddWithValue("@NC", NC);                
                 cmd.Parameters.AddWithValue("@MNC", MNC);
                 cmd.Parameters.AddWithValue("@EC", EC);
                 cmd.Parameters.AddWithValue("@AU", AU);
@@ -245,7 +245,7 @@ namespace TryFasterClient
                 cmd.Parameters.AddWithValue("@Invoice_Num", invoice_Num);
                 cmd.Parameters.AddWithValue("@Delivery_Date", Delivery_Date);
                 cmd.Parameters.AddWithValue("@Delivery_Time", Delivery_Time);
-                cmd.Parameters.AddWithValue("@Delivery_Type", Delivery_Type);                
+                cmd.Parameters.AddWithValue("@Delivery_Type", Delivery_Type);
                 sql.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -343,6 +343,7 @@ namespace TryFasterClient
                 cmd.Parameters.AddWithValue("@ID_Employee", Id_Employee);
                 cmd.Parameters.AddWithValue("@SE", SE);
                 cmd.Parameters.AddWithValue("@ME", ME);
+                cmd.Parameters.AddWithValue("@NE", NE);
                 cmd.Parameters.AddWithValue("@MNE", MNE);
                 cmd.Parameters.AddWithValue("@ECN", ECN);
                 cmd.Parameters.AddWithValue("@EPN", EPN);
@@ -545,7 +546,7 @@ namespace TryFasterClient
         }
 
         //Вызов процедуры обновления данных в таблице "Product"
-        public static void Product_Update(Int32 Id_Product, int PC, string PN, string PT, int DI )
+        public static void Product_Update(Int32 Id_Product, int PC, string PN, string PT, int DI)
         {
             spConfiguration("Product_Update");
             try
@@ -598,7 +599,7 @@ namespace TryFasterClient
             {
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@Race_Id", race_id);
-                cmd.Parameters.AddWithValue("@Client_Id", client_id);                
+                cmd.Parameters.AddWithValue("@Client_Id", client_id);
                 sql.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -657,7 +658,7 @@ namespace TryFasterClient
         }
 
         //Вызов процедуры добавления данных в таблице "Race"
-        public static void Race_Insert(string Race_Time, string Race_Date, string Race_Duration, string RaceBestTime, int transport_id, int employee_id)
+        public static void Race_Insert(string Race_Time, string Race_Date, string Race_Duration, string RaceBestTime, int employee_id)
         {
             spConfiguration("Race_Insert");
             try
@@ -667,7 +668,6 @@ namespace TryFasterClient
                 cmd.Parameters.AddWithValue("@Race_Date", Race_Date);
                 cmd.Parameters.AddWithValue("@Race_Duration", Race_Duration);
                 cmd.Parameters.AddWithValue("@Race_Best_Time", RaceBestTime);
-                cmd.Parameters.AddWithValue("@Transport_Id", transport_id);
                 cmd.Parameters.AddWithValue("@Employee_Id", employee_id);
                 sql.Open();
                 cmd.ExecuteNonQuery();
@@ -683,7 +683,7 @@ namespace TryFasterClient
         }
 
         //Вызов процедуры обновления данных в таблице "Race"
-        public static void Race_Update(Int32 Id_Race, string RDT, string RT, string RD, string RBT, int TI)
+        public static void Race_Update(Int32 Id_Race, string RDT, string RT, string RD, string RBT, int EI)
         {
             spConfiguration("Race_Update");
             try
@@ -694,7 +694,7 @@ namespace TryFasterClient
                 cmd.Parameters.AddWithValue("@RT", RT);
                 cmd.Parameters.AddWithValue("@RD", RD);
                 cmd.Parameters.AddWithValue("@RBT", RBT);
-                cmd.Parameters.AddWithValue("@TI", TI);
+                cmd.Parameters.AddWithValue("@EI", EI);
                 sql.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -730,7 +730,7 @@ namespace TryFasterClient
         }
 
         //Вызов процедуры добавления данных в таблице "Repair"
-        public static void Repair_Insert(string Repair_Date, string Repair_Detail, bool Repair_Ready, int Transport_Id)
+        public static void Repair_Insert(string Repair_Date, string Repair_Detail, string Repair_Ready, int Transport_Id)
         {
             spConfiguration("Repair_Insert");
             try
@@ -739,7 +739,7 @@ namespace TryFasterClient
                 cmd.Parameters.AddWithValue("@Repair_Date", Repair_Date);
                 cmd.Parameters.AddWithValue("@Repair_Detail", Repair_Detail);
                 cmd.Parameters.AddWithValue("@Repair_Ready", Repair_Ready);
-                cmd.Parameters.AddWithValue("@Transport_Id", Transport_Id);                
+                cmd.Parameters.AddWithValue("@Transport_Id", Transport_Id);
                 sql.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -754,7 +754,7 @@ namespace TryFasterClient
         }
 
         //Вызов процедуры обновления данных в таблице "Repair"
-        public static void Repair_Update(Int32 Id_Repair, string RDT, string RD, bool RR, int TI)
+        public static void Repair_Update(Int32 Id_Repair, string RDT, string RD, string RR, int TI)
         {
             spConfiguration("Repair_Update");
             try
@@ -763,7 +763,7 @@ namespace TryFasterClient
                 cmd.Parameters.AddWithValue("@ID_Repair", Id_Repair);
                 cmd.Parameters.AddWithValue("@RDT", RDT);
                 cmd.Parameters.AddWithValue("@RD", RD);
-                cmd.Parameters.AddWithValue("@RR", RR);            
+                cmd.Parameters.AddWithValue("@RR", RR);
                 cmd.Parameters.AddWithValue("@TI", TI);
                 sql.Open();
                 cmd.ExecuteNonQuery();
@@ -800,7 +800,7 @@ namespace TryFasterClient
         }
 
         //Вызов процедуры добавления данных в таблице "Role"
-        public static void Role_Insert(string Role_Name, bool client, bool booking, bool paymentcheck, bool employee, bool delivery, bool position, 
+        public static void Role_Insert(string Role_Name, bool client, bool booking, bool paymentcheck, bool employee, bool delivery, bool position,
             bool product, bool transport, bool repair, bool race, bool race_client)
         {
             spConfiguration("Role_Insert");
@@ -890,7 +890,7 @@ namespace TryFasterClient
         //Вызов процедуры добавления данных в таблице "Transport"
         public static void Transport_Insert(string Transport_Name, string TP_Num, string Transport_State, string Transport_Power, int Delivery_Id)
         {
-            spConfiguration("Tranposrt_Insert");
+            spConfiguration("Transport_Insert");
             try
             {
                 cmd.Parameters.Clear();
@@ -946,6 +946,72 @@ namespace TryFasterClient
             {
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@ID_Transport", ID);
+                sql.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                sql.Close();
+            }
+        }
+
+        //Вызов процедуры добавления данных в таблице "Transport_Race"
+        public static void Transport_Race_Insert(int Transport_Id, int race_id)
+        {
+            spConfiguration("Transport_Race_Insert");
+            try
+            {
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@Transport_Id", Transport_Id);
+                cmd.Parameters.AddWithValue("@Race_id", race_id);
+                sql.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                sql.Close();
+            }
+        }
+
+        //Вызов процедуры обновления данных в таблице "Transport_Race"
+        public static void Transport_Race_Update(Int32 Id_transport_Race, int TI, int RI)
+        {
+            spConfiguration("Transport_Race_Update");
+            try
+            {
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@ID_Transport_Race", Id_transport_Race);
+                cmd.Parameters.AddWithValue("@TI", TI);
+                cmd.Parameters.AddWithValue("@RI", RI);
+                sql.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                sql.Close();
+            }
+        }
+
+        //Вызов процедуры удаления данных в таблице "Tranposrt_Race"
+        public static void Transport_Race_Delete(Int32 ID)
+        {
+            spConfiguration("Transport_Race_Delete");
+            try
+            {
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@ID_TransportRace", ID);
                 sql.Open();
                 cmd.ExecuteNonQuery();
             }

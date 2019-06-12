@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="TryFasterClient.AccountControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:TryFasterClient"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1067" FontFamily="Yandex Sans Text Light" Name="ucAccount" Loaded="UcAccount_Loaded">
+    <Grid Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="2.2*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Label FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center">Личный кабинет</Label>
+        <WrapPanel Grid.Row="3"  VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Button  Name="btnToMenu" FontSize="32" Width="300" Margin="0, 0, 10, 0" Click="BtnToMenu_Click">Назад</Button>
+        </WrapPanel>
+        <Grid Grid.Row="1" Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel HorizontalAlignment="Right">
+                <Label FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center">Имя пользователя:</Label>
+                <Label FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center">Фамилия:</Label>
+                <Label FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center">Имя:</Label>
+                <Label FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center">Email:</Label>
+                <Label FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center">Номер телефона:</Label>
+            </StackPanel>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Left">
+                <Label Name="lblUserName" FontSize="20" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0">*User*</Label>
+                <Label Name="lblSurname" FontSize="20" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1">*Surname*</Label>
+                <Label Name="lblName" FontSize="20" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2">*Name*</Label>
+                <Label Name="lblMidn" FontSize="20" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3">*Email*</Label>
+                <Label Name="lblMobNum" FontSize="20" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4">*MobileNuber*</Label>
+
+                <TextBox Name="tbLoginClient" FontSize="16" Grid.Column="1" Height="35" Width="300" VerticalContentAlignment="Center" Visibility="Collapsed" PreviewTextInput="TbLoginClient_PreviewTextInput"></TextBox>
+                <TextBox Name ="tbSurnClient"  FontSize="16" Grid.Column="1" Grid.Row="1" Height="35" Width="300" VerticalContentAlignment="Center" Visibility="Collapsed" PreviewTextInput="TbSurnClient_PreviewTextInput"></TextBox>
+                <TextBox Name ="tbNameClient" FontSize="16" Grid.Column="1" Grid.Row="2" Height="35" Width="300" VerticalContentAlignment="Center" Visibility="Collapsed" PreviewTextInput="TbSurnClient_PreviewTextInput"></TextBox>
+                <TextBox Name ="tbMidnClient" FontSize="16" Grid.Column="1" Grid.Row="3" Height="35" Width="300" VerticalContentAlignment="Center" Visibility="Collapsed"></TextBox>
+                <wpfx:MaskedTextBox Name="tbMobNum" FontSize="16" Grid.Row="4" Grid.Column="1" Height="35" Width="300" Mask="+7(000)000-00-00" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Visibility="Collapsed"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button  Name="btnAcceptChange" FontSize="25" Margin="0, 5, 5, 0" Visibility="Collapsed" Height="35" Click="BtnAcceptChange_Click">Подтвердить изменения</Button>
+                    <Button  Name="btnCancelChange" FontSize="25" Margin="0, 5, 0, 0" Visibility="Collapsed" Height="35" Click="BtnCancelChange_Click">Отменить изменение</Button>
+                    <Button  Name="btnChangeData" FontSize="25" Margin="0, 5, 0, 0" HorizontalAlignment="Center" Height="35" Click="BtnChangeData_Click">Изменить данные</Button>
+                </WrapPanel>
+                <Label FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Bottom">Изменение пароля</Label>
+            </StackPanel>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+                <WrapPanel>
+                    <Label FontSize="25" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="5">Текущий пароль:</Label>
+                    <wpfx:WatermarkPasswordBox Name="tbOldPass" Margin="22,0,0,0" Height="30" Width="300" FontSize="16"></wpfx:WatermarkPasswordBox>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label FontSize="25" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="6">Новый пароль:</Label>
+                    <wpfx:WatermarkPasswordBox Name="tbNewPass" Margin="45,0,0,0" Height="30" Width="300" FontSize="16"></wpfx:WatermarkPasswordBox>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label FontSize="25" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="6">Повторите пароль:</Label>
+                    <wpfx:WatermarkPasswordBox Name="tbCheckNewPass" Height="30" Width="300" FontSize="16"></wpfx:WatermarkPasswordBox>
+                </WrapPanel>
+                <Button Name="btnChangePass" FontSize="30" Margin="0, 0, 0, 0" VerticalContentAlignment="Center" Grid.Row="1" Height="35" Click="BtnChangePass_Click">Изменить пароль</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

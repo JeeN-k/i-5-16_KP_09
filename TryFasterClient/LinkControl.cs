@@ -13,7 +13,6 @@ namespace TryFasterClient
                 {
                     (window as MainWindow).MainGrid.Children.Clear();//очистка дочернеих объектов
                     (window as MainWindow).MainGrid.Children.Add(UserControlName);//присвоение в дочерние объекты заданный юхзерконтрол
-
                 }
             }
         }

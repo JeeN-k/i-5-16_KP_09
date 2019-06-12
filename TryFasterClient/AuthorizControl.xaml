@@ -6,10 +6,9 @@
              xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:local="clr-namespace:TryFasterClient"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="1067">
+             d:DesignHeight="600" d:DesignWidth="1067" PreviewKeyDown="UserControl_PreviewKeyDown">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -24,28 +23,24 @@
             <Label FontSize="30" HorizontalAlignment="Right" VerticalAlignment="Center" Name="L" >Логин</Label>
             <TextBox  Name="TbLogin"  Margin="10"   FontSize="16" VerticalAlignment="Center" Width="300" Height="35" HorizontalAlignment="Left" VerticalContentAlignment="Center" TabIndex="0"></TextBox>
         </WrapPanel>
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Center">
+            <WrapPanel   Margin="0" Width="438">
+                <Label FontSize="30"  HorizontalAlignment="Right" VerticalAlignment="Center" Name="P" >Пароль</Label>
+                <wpfx:WatermarkPasswordBox  Name="TbPassword" Margin="10" FontSize="16" VerticalAlignment="Center" Width="300" Height="35" HorizontalAlignment="Left" TabIndex="1"></wpfx:WatermarkPasswordBox>
+            </WrapPanel>
+            <Label FontSize="20" Name="lblErr" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Center" Foreground="#FFB90E0E" Visibility="Hidden">Неверный логин или пароль</Label>
+        </StackPanel>
+        <Label FontSize="48" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Yandex Sans Text Bold" VerticalAlignment="Center">Авторизация</Label>
 
-        <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Width="438">
-            <Label FontSize="30"  HorizontalAlignment="Right" VerticalAlignment="Center" Name="P" >Пароль</Label>
-            <wpfx:WatermarkPasswordBox  Name="TbPassword" Margin="10" FontSize="16" VerticalAlignment="Center" Width="300" Height="35" HorizontalAlignment="Left" TabIndex="1"></wpfx:WatermarkPasswordBox>
-
-
-        </WrapPanel>
-
-
-
-        <Label FontSize="48" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">Авторизация</Label>
-        <Label FontSize="20" Name="lblErr" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FFB90E0E" Visibility="Hidden">Неверный логин или пароль</Label>
-
-        <Button Name="BtnEnter" Grid.Row="3" Grid.ColumnSpan="2" FontSize="32" HorizontalAlignment="Center" Click="BtnEnter_Click" VerticalAlignment="Bottom" TabIndex="3">Вход</Button>
-        <TextBlock Name="RegBut"  FontSize="16" Grid.ColumnSpan="2" Grid.Row="4" Cursor="Hand" MouseDown="RegBut_MouseDown" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FF0009C5"  FontStretch="ExtraExpanded">Регистрация</TextBlock>
-
-        <WrapPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="460,0,349,0">
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10">
+            <Button Name="BtnEnter" FontSize="32" HorizontalAlignment="Center" Click="BtnEnter_Click" TabIndex="3">Вход</Button>
+            <TextBlock Name="RegBut"  FontSize="16" Cursor="Hand" MouseDown="RegBut_MouseDown" Foreground="#FF0009C5" FontStretch="ExtraExpanded">Регистрация</TextBlock>
+        </StackPanel>
+        <WrapPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,0">
             <CheckBox Name="cbAutoEnter" VerticalAlignment="Center" HorizontalAlignment="Right" TabIndex="2"></CheckBox>
             <Label FontSize="20"  VerticalAlignment="Center" HorizontalAlignment="Right">Запомнить данные входа</Label>
         </WrapPanel>
     </Grid>
-
 </UserControl>
 
 

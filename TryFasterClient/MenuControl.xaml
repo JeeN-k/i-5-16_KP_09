@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="TryFasterClient.MenuControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TryFasterClient"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Image Name="ImgTableWork" Source="Resources/TableWorkLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgTableWork_MouseDown" MouseEnter="ImgTableWork_MouseEnter" MouseLeave="ImgTableWork_MouseLeave"/>
+        <Image Name="ImgAccount" Grid.Column="1" Source="Resources/AccountLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgAccount_MouseDown" MouseEnter="ImgAccount_MouseEnter" MouseLeave="ImgAccount_MouseLeave"/>
+        <Image Name="ImgDelivery" Grid.Column="2" Source="Resources/DeliveryLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgDelivery_MouseDown" MouseEnter="ImgDelivery_MouseEnter" MouseLeave="ImgDelivery_MouseLeave"/>
+        <Image Name="ImgBooking" Grid.Column="0" Grid.Row="1" Source="Resources/BookingLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgBooking_MouseDown" MouseEnter="ImgBooking_MouseEnter" MouseLeave="ImgBooking_MouseLeave"/>
+        <Image Name="ImgRace" Grid.Column="1" Grid.Row="1" Source="Resources/RaceLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgRace_MouseDown" MouseEnter="ImgRace_MouseEnter" MouseLeave="ImgRace_MouseLeave"/>
+        <Image Name="ImgSettings" Grid.Column="2" Grid.Row="1" Source="Resources/SettingsLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgSettings_MouseDown" MouseEnter="ImgSettings_MouseEnter" MouseLeave="ImgSettings_MouseLeave"/>
+    </Grid>
+</UserControl>

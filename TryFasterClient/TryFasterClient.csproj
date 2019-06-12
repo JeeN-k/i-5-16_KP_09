@@ -71,10 +71,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AccountControl.xaml.cs">
+      <DependentUpon>AccountControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BookingControl.xaml.cs">
+      <DependentUpon>BookingControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Crypt.cs" />
+    <Compile Include="DeliveryControl.xaml.cs">
+      <DependentUpon>DeliveryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicObject.cs" />
+    <Compile Include="MenuControl.xaml.cs">
+      <DependentUpon>MenuControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RaceControl.xaml.cs">
+      <DependentUpon>RaceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Registr.cs" />
     <Compile Include="RegistrationControl.xaml.cs">
       <DependentUpon>RegistrationControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettingsControl.xaml.cs">
+      <DependentUpon>SettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableEditControl.xaml.cs">
+      <DependentUpon>TableEditControl.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AccountControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AuthorizControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -86,11 +113,35 @@
     <Compile Include="AuthorizControl.xaml.cs">
       <DependentUpon>AuthorizControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="BookingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeliveryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MenuControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RaceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RegistrationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TableEditControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -114,17 +165,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <Resource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+      <SubType>Designer</SubType>
+    </Resource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Resource Include="Resources\YandexSansDisplay-Bold.ttf" />
-    <Resource Include="Resources\YandexSansText-Thin.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -149,6 +199,48 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\BackWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TableWorkLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TableWorkText.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AccountLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AccountText.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ChangeUser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DeliveryLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DeliveryText.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BookingLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BookingText.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\RaceLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\RaceText.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\SettingsLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\SettingsText.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="TryFasterClient.DeliveryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:TryFasterClient"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1067" FontFamily="Yandex Sans Text Light" Loaded="UserControl_Loaded">
+    <Grid Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="2.8*"></RowDefinition>
+            <RowDefinition Height="5.2*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label FontSize="40" HorizontalAlignment="Center" FontFamily="Yandex Sans Text Bold" VerticalAlignment="Center">Работа с поставками</Label>
+        <WrapPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Button Name="btnAddDelivery" FontSize="32" HorizontalAlignment="Right" Margin="0, 0, 10, 0" VerticalAlignment="Center" Click="BtnAddDelivery_Click">Оформить поставку</Button>
+            <Button Name="btnBack"  FontSize="32" HorizontalAlignment="Right" Margin="0, 0, 10, 0"  VerticalAlignment="Center" Click="BtnBack_Click">Назад</Button>
+        </WrapPanel>
+        <WrapPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Button Name="toDeliveryList" FontSize="32" HorizontalAlignment="Right" Margin="10, 0, 0, 0"  VerticalAlignment="Center" Click="ToDeliveryList_Click">Список поставок</Button>
+        </WrapPanel>
+        <Grid Grid.Row="1" Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label FontSize="30" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0" Margin="0,0,-100,0">Дата поставки:</Label>
+            <Label FontSize="30" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"  Margin="0,0,-100,0">Время поставки:</Label>
+            <Label FontSize="30" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"  Margin="0,0,-100,0">Тип поставки:</Label>
+            <ComboBox Name="cbDateDelivery" FontSize="16" Grid.Column="1"  Grid.Row="0" Height="35" Width="300" VerticalContentAlignment="Center"></ComboBox>
+            <wpfx:TimePicker Name="tpTimeDelivery" Grid.Column="1" FontSize="16" Grid.Row="1" Height="35" Width="300" AllowTextInput="False" CurrentDateTimePart="Hour24" ></wpfx:TimePicker>
+            <ComboBox Name="cbDeliveryType" FontSize="16" Grid.Column="1"  Grid.Row="2" Height="35" Width="300" VerticalContentAlignment="Center" SelectionChanged="CbDeliveryType_SelectionChanged"></ComboBox>
+            <!--<wpfx:MaskedTextBox Name="tbTimeDelivery" FontSize="16" Grid.Column="1" Mask="00:00" Grid.Row="2" Height="35" Width="300" VerticalContentAlignment="Center"></wpfx:MaskedTextBox>-->
+
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Name="spProducts" Grid.Row="2" HorizontalAlignment="Center">
+                <Label FontSize="30" VerticalAlignment="Center">Товар:</Label>
+                <TextBox Name="tbProductName" FontSize="16" Height="35" Width="300" HorizontalAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+                <ComboBox Name="cbProductName" FontSize="16" Height="35" Width="300" HorizontalAlignment="Left" VerticalContentAlignment="Center" Visibility="Collapsed"></ComboBox>
+                <WrapPanel>
+                    <CheckBox Name="cbSelectProduct" VerticalAlignment="Center" Checked="CbSelectProduct_Unchecked" Unchecked="CbSelectProduct_Unchecked"></CheckBox>
+                    <Label FontSize="15" VerticalAlignment="Center">Выбрать из существующего</Label>
+                </WrapPanel>
+                <Label FontSize="30" Grid.Row="2">Количество:</Label>
+                <wpfx:IntegerUpDown Name="udProductCount" FontSize="16" Height="35" Width="100" Minimum="1" Maximum="550" Value="1" AllowTextInput="False" HorizontalAlignment="Left" VerticalContentAlignment="Center"></wpfx:IntegerUpDown>
+                <Label FontSize="30" VerticalAlignment="Center">Тип товара:</Label>
+                <ComboBox Name="cbProductType" FontSize="16" Height="35" Width="300" HorizontalAlignment="Left" VerticalContentAlignment="Center"></ComboBox>
+            </StackPanel>
+            <StackPanel Name="spTransports" Grid.Row="2" HorizontalAlignment="Center" Visibility="Collapsed">
+                <Label FontSize="30" VerticalAlignment="Center">Наименование:</Label>
+                <TextBox Name="tbTransportName" FontSize="16" Height="35" Width="300" HorizontalAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+                <ComboBox Name="cbTransportName" FontSize="16" Height="35" Width="300" HorizontalAlignment="Left" VerticalContentAlignment="Center" Visibility="Collapsed"></ComboBox>
+                <WrapPanel>
+                    <CheckBox Name="cbSelectTransport" VerticalAlignment="Center" Checked="CbSelectTransport_Unchecked" Unchecked="CbSelectTransport_Unchecked"></CheckBox>
+                    <Label FontSize="15" VerticalAlignment="Center">Выбрать из существующего</Label>
+                </WrapPanel>
+                <Label FontSize="30">Номер ПТС:</Label>
+                <wpfx:MaskedTextBox Name="tbTransportPtNum" FontSize="16" Height="35" Mask="99 LL999999" Width="300" HorizontalAlignment="Left" VerticalContentAlignment="Center" PreviewTextInput="TbTransportPtNum_PreviewTextInput"></wpfx:MaskedTextBox>
+                <Label FontSize="30">Мощность (л.с.):</Label>
+                <wpfx:MaskedTextBox Name="tbTransportPower" FontSize="16" Height="35" Mask="999" Width="300" HorizontalAlignment="Left" VerticalContentAlignment="Center" PreviewTextInput="TbTransportPower_PreviewTextInput"></wpfx:MaskedTextBox>
+            </StackPanel>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2.5*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <ScrollViewer Name="svProducts" Width="419" HorizontalAlignment="Right" Margin="0,0,114,0">
+                    <DataGrid Name="dgProductList" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Товар" IsReadOnly="True" Binding="{Binding Path=ProductName}" Width="150"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Количество" IsReadOnly="True"  Binding="{Binding Path=ProductCount}" Width="150"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Тип продукта" IsReadOnly="True"  Binding="{Binding Path=ProductType}" Width="150"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
+
+                <ScrollViewer Name="svTransport" Width="419" HorizontalAlignment="Right" Margin="0,0,114,0" Visibility="Collapsed">
+                    <DataGrid Name="dgTransportList" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Транспорт" IsReadOnly="True" Binding="{Binding Path=TransportName}" Width="150"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Номер ПТС" IsReadOnly="True"  Binding="{Binding Path=TransportPtNum}" Width="150"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Мощность (л.с.)" IsReadOnly="True"  Binding="{Binding Path=TransportPower}" Width="150"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
+                <WrapPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,3" Width="533">
+                    <Button Name="btnAddToTable" FontSize="20" HorizontalAlignment="Left" Height="30" Click="BtnAddToTable_Click" VerticalAlignment="Top" Width="209">Добавить товар</Button>
+                    <Button Name="btnDeleteProduct" FontSize="20" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Height="30" Click="BtnDeleteProduct_Click" Width="200">Удалить товар</Button>
+                    <Button Name="btnClearTable" FontSize="20" HorizontalAlignment="Left" Margin="0, 5, 0, 0"  Height="30" Click="BtnClearTable_Click" Width="417">Очистить таблицу</Button>
+                </WrapPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

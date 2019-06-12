@@ -15,7 +15,8 @@ namespace TryFasterClient
             InitializeComponent();
 
             //if (File.Exists(@"F:\Licens"))
-            MainGrid.Children.Add(new AuthorizControl());//создание изначального окна авторизации
+            MainGrid.Children.Add(new AuthorizControl());//создание изначального окна авторизации 
+
             //else
             //{
             //    MessageBox.Show("У вас нет лицензии!!");
@@ -25,7 +26,13 @@ namespace TryFasterClient
 
         private void BtnClose_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
+        }
+
+        public void ImgVisibility()
+        {
+            BtnHome.Visibility = Visibility.Visible;
+            BtnChangeUser.Visibility = Visibility.Visible;
         }
 
         private void BtnMax_MouseDown(object sender, MouseButtonEventArgs e)//кнопка на весь экран
@@ -52,6 +59,22 @@ namespace TryFasterClient
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private void BtnHome_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            LinkControl.Link(new MenuControl());
+        }
+
+        private void BtnChangeUser_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBoxResult s = MessageBox.Show("Вы уверены, что хотите сменить пользователя?", "Смена пользователя", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (s == MessageBoxResult.Yes)
+            {
+                LinkControl.Link(new AuthorizControl());
+                WPNav.Visibility = Visibility.Hidden;
+                TBlUserInfo.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

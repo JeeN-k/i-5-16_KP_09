@@ -133,13 +133,49 @@
   <data name="Tray" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="YandexSansDisplay_Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\YandexSansDisplay-Bold.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="YandexSansText_Thin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\YandexSansText-Thin.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="BackWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BackWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="home" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\home.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TableWorkLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TableWorkLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TableWorkText" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TableWorkText.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AccountLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AccountLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AccountText" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AccountText.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ChangeUser" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ChangeUser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DeliveryLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DeliveryLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DeliveryText" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DeliveryText.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BookingLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BookingLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BookingText" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BookingText.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RaceLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RaceLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RaceText" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RaceText.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SettingsLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SettingsLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SettingsText" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SettingsText.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
