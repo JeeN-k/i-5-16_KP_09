@@ -129,5 +129,17 @@ namespace TryFasterClient
             else
                 e.Handled = false;
         }
+
+        private void BtnCheck_Click(object sender, RoutedEventArgs e)
+        {
+            string[] hours = new string[13];
+            string s = "";
+            for (int i = 0; i <= 12; i++)
+            {
+                hours[i] = (i + 10).ToString();
+                s += hours[i] + "\n";
+            }
+            MessageBox.Show(s);
+        }
     }
 }

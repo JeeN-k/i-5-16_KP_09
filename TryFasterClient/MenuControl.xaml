@@ -5,9 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TryFasterClient"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="720" d:DesignWidth="1080">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -22,5 +23,6 @@
         <Image Name="ImgBooking" Grid.Column="0" Grid.Row="1" Source="Resources/BookingLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgBooking_MouseDown" MouseEnter="ImgBooking_MouseEnter" MouseLeave="ImgBooking_MouseLeave"/>
         <Image Name="ImgRace" Grid.Column="1" Grid.Row="1" Source="Resources/RaceLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgRace_MouseDown" MouseEnter="ImgRace_MouseEnter" MouseLeave="ImgRace_MouseLeave"/>
         <Image Name="ImgSettings" Grid.Column="2" Grid.Row="1" Source="Resources/SettingsLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgSettings_MouseDown" MouseEnter="ImgSettings_MouseEnter" MouseLeave="ImgSettings_MouseLeave"/>
+        <Image Name="ImgAdmin" Grid.Column="0" Grid.Row="2" Source="Resources/AdminLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgAdmin_MouseDown" MouseEnter="ImgAdmin_MouseEnter" MouseLeave="ImgAdmin_MouseLeave"/>
     </Grid>
 </UserControl>

@@ -183,7 +183,7 @@ namespace TryFasterClient
 
         private void BtnToMenu_Click(object sender, RoutedEventArgs e)
         {
-
+            LinkControl.Link(new MenuControl());
         }
 
         private void UcAccount_Loaded(object sender, RoutedEventArgs e)

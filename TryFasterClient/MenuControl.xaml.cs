@@ -119,5 +119,20 @@ namespace TryFasterClient
         {
             ChangeImage(ImgSettings, "Resources/SettingsLogo.png");
         }
+
+        private void ImgAdmin_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            LinkControl.Link(new AdminPanel());
+        }
+
+        private void ImgAdmin_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ChangeImage(ImgAdmin, "Resources/AdminText.png");
+        }
+
+        private void ImgAdmin_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ChangeImage(ImgAdmin, "Resources/AdminLogo.png");
+        }
     }
 }

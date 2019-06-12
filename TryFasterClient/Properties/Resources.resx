@@ -178,4 +178,10 @@
   <data name="SettingsText" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SettingsText.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="AdminLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AdminLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AdminText" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AdminText.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

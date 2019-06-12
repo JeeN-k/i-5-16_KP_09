@@ -165,7 +165,7 @@ namespace TryFasterClient
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-
+            LinkControl.Link(new MenuControl());
         }
 
         private void ToDeliveryList_Click(object sender, RoutedEventArgs e)

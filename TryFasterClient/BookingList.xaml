@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="TryFasterClient.BookingList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TryFasterClient"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1067">
+    <Grid Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.2*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="1.3*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Name="lblCaptionList" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center">Список бронирований *UserName*</Label>
+        <Button Name="btnBack" Grid.Row="3" FontSize="32" Width="150" HorizontalAlignment="Right" Margin="0, 0, 10, 0" VerticalAlignment="Center" Click="BtnBack_Click">Назад</Button>
+        <Grid Grid.Row="1" Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="1">
+                <WrapPanel VerticalAlignment="Center" Margin="10, 0, 0, 0">
+                    <CheckBox Name="chbFutureBook" VerticalAlignment="Center" IsChecked="True" Checked="ChbFutureBook_Unchecked" Unchecked="ChbFutureBook_Unchecked" ></CheckBox>
+                    <Label FontSize="20" VerticalAlignment="Center">Будущие бронирования</Label>
+                </WrapPanel>
+                <WrapPanel VerticalAlignment="Center" Margin="10, 0, 0, 0">
+                    <CheckBox Name="chbPastBook" VerticalAlignment="Center" IsChecked="True" Checked="ChbFutureBook_Unchecked" Unchecked="ChbFutureBook_Unchecked"></CheckBox>
+                    <Label FontSize="20" VerticalAlignment="Center">Прошедшие бронирования</Label>
+                </WrapPanel>
+            </StackPanel>
+            <DataGrid Name="dgBookList" FontSize="16" Loaded="DgBookList_Loaded" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single" SelectedCellsChanged="DgBookList_SelectedCellsChanged"></DataGrid>
+        </Grid>
+
+    </Grid>
+</UserControl>

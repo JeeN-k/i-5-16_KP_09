@@ -203,7 +203,7 @@ namespace TryFasterClient
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            LinkControl.Link(new MenuControl());
         }
 
         private void DG_Tables_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)

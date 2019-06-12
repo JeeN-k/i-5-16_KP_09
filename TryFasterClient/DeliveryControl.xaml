@@ -19,9 +19,7 @@
             <Button Name="btnAddDelivery" FontSize="32" HorizontalAlignment="Right" Margin="0, 0, 10, 0" VerticalAlignment="Center" Click="BtnAddDelivery_Click">Оформить поставку</Button>
             <Button Name="btnBack"  FontSize="32" HorizontalAlignment="Right" Margin="0, 0, 10, 0"  VerticalAlignment="Center" Click="BtnBack_Click">Назад</Button>
         </WrapPanel>
-        <WrapPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <Button Name="toDeliveryList" FontSize="32" HorizontalAlignment="Right" Margin="10, 0, 0, 0"  VerticalAlignment="Center" Click="ToDeliveryList_Click">Список поставок</Button>
-        </WrapPanel>
+        <WrapPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <Grid Grid.Row="1" Margin="0">
             <Grid.RowDefinitions>
                 <RowDefinition/>
