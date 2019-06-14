@@ -87,7 +87,7 @@ namespace TryFasterClient
 
         private void ImgBooking_MouseLeave(object sender, MouseEventArgs e)
         {
-            ChangeImage(ImgBooking, "Resources/DeliveryLogo.png");
+            ChangeImage(ImgBooking, "Resources/BookingLogo.png");
         }
 
         private void ImgRace_MouseDown(object sender, MouseButtonEventArgs e)
@@ -133,6 +133,43 @@ namespace TryFasterClient
         private void ImgAdmin_MouseLeave(object sender, MouseEventArgs e)
         {
             ChangeImage(ImgAdmin, "Resources/AdminLogo.png");
+        }
+
+        private void UcMenu_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (AuthorizControl.RoleName == "Механик")
+            {
+                ImgDelivery.Visibility = Visibility.Visible;
+                //ImgRace.Visibility = Visibility.Visible;
+                ImgAccount.Visibility = Visibility.Visible;
+                ImgTableWork.Visibility = Visibility.Visible;
+            }
+            else if (AuthorizControl.RoleName == "Директор")
+            {
+                ImgBooking.Visibility = Visibility.Visible;
+                ImgDelivery.Visibility = Visibility.Visible;
+                ImgTableWork.Visibility = Visibility.Visible;
+                //ImgRace.Visibility = Visibility.Visible;
+            }
+            else if (AuthorizControl.RoleName == "Кассир")
+            {
+                ImgBooking.Visibility = Visibility.Visible;
+                ImgTableWork.Visibility = Visibility.Visible;
+            }
+            else if (AuthorizControl.RoleName == "Администратор")
+            {
+                ImgTableWork.Visibility = Visibility.Visible;
+                //ImgRace.Visibility = Visibility.Visible;
+                ImgDelivery.Visibility = Visibility.Visible;
+                ImgBooking.Visibility = Visibility.Visible;
+                ImgAdmin.Visibility = Visibility.Visible;
+                //ImgSettings.Visibility = Visibility.Visible;
+            }
+            else if (AuthorizControl.RoleName == "Клиент")
+            {
+                ImgBooking.Visibility = Visibility.Visible;
+                //ImgSettings.Visibility = Visibility.Visible;
+            }
         }
     }
 }

@@ -5,24 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TryFasterClient"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="1080">
+             d:DesignHeight="720" d:DesignWidth="1080" Name="ucMenu" Loaded="UcMenu_Loaded">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Image Name="ImgTableWork" Source="Resources/TableWorkLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgTableWork_MouseDown" MouseEnter="ImgTableWork_MouseEnter" MouseLeave="ImgTableWork_MouseLeave"/>
-        <Image Name="ImgAccount" Grid.Column="1" Source="Resources/AccountLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgAccount_MouseDown" MouseEnter="ImgAccount_MouseEnter" MouseLeave="ImgAccount_MouseLeave"/>
-        <Image Name="ImgDelivery" Grid.Column="2" Source="Resources/DeliveryLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgDelivery_MouseDown" MouseEnter="ImgDelivery_MouseEnter" MouseLeave="ImgDelivery_MouseLeave"/>
-        <Image Name="ImgBooking" Grid.Column="0" Grid.Row="1" Source="Resources/BookingLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgBooking_MouseDown" MouseEnter="ImgBooking_MouseEnter" MouseLeave="ImgBooking_MouseLeave"/>
-        <Image Name="ImgRace" Grid.Column="1" Grid.Row="1" Source="Resources/RaceLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgRace_MouseDown" MouseEnter="ImgRace_MouseEnter" MouseLeave="ImgRace_MouseLeave"/>
-        <Image Name="ImgSettings" Grid.Column="2" Grid.Row="1" Source="Resources/SettingsLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgSettings_MouseDown" MouseEnter="ImgSettings_MouseEnter" MouseLeave="ImgSettings_MouseLeave"/>
-        <Image Name="ImgAdmin" Grid.Column="0" Grid.Row="2" Source="Resources/AdminLogo.png" Cursor="Hand" Width="150" Height="150" MouseDown="ImgAdmin_MouseDown" MouseEnter="ImgAdmin_MouseEnter" MouseLeave="ImgAdmin_MouseLeave"/>
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="700" Height="340">
+            <Image Name="ImgTableWork" Source="Resources/TableWorkLogo.png" Cursor="Hand" Margin="10, 10, 10, 10" Width="150" Height="150" MouseDown="ImgTableWork_MouseDown" MouseEnter="ImgTableWork_MouseEnter" MouseLeave="ImgTableWork_MouseLeave" Visibility="Collapsed"/>
+            <Image Name="ImgAccount" Grid.Column="1" Source="Resources/AccountLogo.png" Margin="10, 10, 10, 10" Cursor="Hand" Width="150" Height="150" MouseDown="ImgAccount_MouseDown" MouseEnter="ImgAccount_MouseEnter" MouseLeave="ImgAccount_MouseLeave" Visibility="Visible"/>
+            <Image Name="ImgDelivery" Grid.Column="2" Source="Resources/DeliveryLogo.png" Margin="10, 10, 10, 10" Cursor="Hand" Width="150" Height="150" MouseDown="ImgDelivery_MouseDown" MouseEnter="ImgDelivery_MouseEnter" MouseLeave="ImgDelivery_MouseLeave" Visibility="Collapsed"/>
+            <Image Name="ImgBooking" Grid.Column="0" Grid.Row="1" Source="Resources/BookingLogo.png" Margin="10, 10, 10, 10" Cursor="Hand" Width="150" Height="150" MouseDown="ImgBooking_MouseDown" MouseEnter="ImgBooking_MouseEnter" MouseLeave="ImgBooking_MouseLeave" Visibility="Collapsed"/>
+            <Image Name="ImgRace" Grid.Column="1" Grid.Row="1" Source="Resources/RaceLogo.png" Margin="10, 10, 10, 10" Cursor="Hand" Width="150" Height="150" MouseDown="ImgRace_MouseDown" MouseEnter="ImgRace_MouseEnter" MouseLeave="ImgRace_MouseLeave" Visibility="Collapsed"/>
+            <Image Name="ImgSettings" Grid.Column="2" Grid.Row="1" Source="Resources/SettingsLogo.png" Margin="10, 10, 10, 10" Cursor="Hand" Width="150" Height="150" MouseDown="ImgSettings_MouseDown" MouseEnter="ImgSettings_MouseEnter" MouseLeave="ImgSettings_MouseLeave" Visibility="Collapsed"/>
+            <Image Name="ImgAdmin" Grid.Column="0" Grid.Row="2" Source="Resources/AdminLogo.png" Margin="10, 10, 10, 10" Cursor="Hand" Width="150" Height="150" MouseDown="ImgAdmin_MouseDown" MouseEnter="ImgAdmin_MouseEnter" MouseLeave="ImgAdmin_MouseLeave" Visibility="Collapsed"/>
+        </WrapPanel>
     </Grid>
 </UserControl>

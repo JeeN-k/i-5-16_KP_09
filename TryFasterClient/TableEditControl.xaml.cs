@@ -71,8 +71,7 @@ namespace TryFasterClient
                     TextBlock newLabel = new TextBlock();
                     newLabel.Text = DynamicObject.Parameters[i];
                     newLabel.FontSize = 12;
-                    newLabel.Visibility = Visibility.Visible;
-                    newLabel.HorizontalAlignment = HorizontalAlignment.Center;
+                    newLabel.Visibility = Visibility.Visible;                    
                     newLabel.VerticalAlignment = VerticalAlignment.Center;
                     Grid.SetRow(newLabel, i);
                     this.GridLabel.Children.Add(newLabel);
@@ -267,7 +266,7 @@ namespace TryFasterClient
                     if ((DynamicObject.CheckBoxes[i] == 0 && (textBoxes[i] as TextBox).Text == null)
                         || (DynamicObject.CheckBoxes[i] == 1 && (textBoxes[i] as ComboBox).SelectedValue == null))
                     {
-                        MessageBox.Show("Заполните данные во все поля!");
+                        MessageBox.Show("Заполните данные во все поля!", "Поля не заполнены", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
                     else
@@ -289,6 +288,8 @@ namespace TryFasterClient
                         else timeForm[i] = (textBoxes[i] as Xceed.Wpf.Toolkit.TimePicker).Text;
                     }
                 }
+                int rowCount = 0;
+                rowCount = DG_Tables.Items.Count;
                 switch (CbTables.SelectedValue)
                 {
                     case "Клиенты":
@@ -339,8 +340,12 @@ namespace TryFasterClient
                         DBConAct.AppUser_Insert((textBoxes[0] as TextBox).Text, (textBoxes[1] as TextBox).Text, FKIDS[2]);
                         break;
                 }
-                MessageBox.Show("Успешно добавлено!");
                 LoadDBGrid();
+                if (DG_Tables.Items.Count != rowCount)
+                {
+                    MessageBox.Show("Данные успешно внесены в таблицу " + CbTables.SelectedValue.ToString() + "!", "Данные добавлены", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else MessageBox.Show("Ошибка внесения данных", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString(), "Ошибка добавления!"); }
         }
@@ -429,7 +434,7 @@ namespace TryFasterClient
                         DBConAct.AppUser_Update(ID_table, (textBoxes[0] as TextBox).Text, (textBoxes[1] as TextBox).Text, FKIDS[2]);
                         break;
                 }
-                MessageBox.Show("Успешно изменено!");
+                MessageBox.Show("Данные таблицы " + CbTables.SelectedValue.ToString() + " успешно обновлены!", "Данные обновлены", MessageBoxButton.OK, MessageBoxImage.Information);
                 LoadDBGrid();
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString(), "Ошибка добавления!"); }
@@ -481,7 +486,7 @@ namespace TryFasterClient
                         DBConAct.AppUser_Delete(ID_table);
                         break;
                 }
-                MessageBox.Show("Успешно удалено!");
+                MessageBox.Show("Данные из таблицы " + CbTables.SelectedValue.ToString() + " удалены!", "Данные удалены", MessageBoxButton.OK, MessageBoxImage.Information);
                 LoadDBGrid();
             }
             catch { MessageBox.Show("Ошибка удаления!"); }

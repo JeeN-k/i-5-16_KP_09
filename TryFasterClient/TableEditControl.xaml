@@ -7,85 +7,77 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1067">
     <Grid Loaded="Grid_Loaded">
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-            <TabControl Grid.RowSpan="2" Grid.ColumnSpan="3">
-                <TabItem Header="Работа с таблицами">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
+
+        <Grid Grid.RowSpan="2" Grid.ColumnSpan="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="102*"></ColumnDefinition>
+                        <ColumnDefinition Width="252*"/>
+                        <ColumnDefinition Width="354*"></ColumnDefinition>
+                        <ColumnDefinition Width="353*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid  Name="DG_Tables" Grid.ColumnSpan="3" IsReadOnly="True" Grid.RowSpan="3" SelectionMode="Single" CanUserAddRows="False" SelectedCellsChanged="DG_Tables_SelectedCellsChanged"/>
+                    <Grid  Grid.Column="3" Grid.RowSpan="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <DataGrid  Name="DG_Tables" Grid.ColumnSpan="2" IsReadOnly="True" Grid.RowSpan="3" SelectionMode="Single" CanUserAddRows="False" SelectedCellsChanged="DG_Tables_SelectedCellsChanged"/>
-                        <Grid  Grid.Column="2" Grid.RowSpan="3">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
 
-                            <Grid  x:FieldModifier="public" Name="GridLabel">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
+                        <Grid  x:FieldModifier="public" Name="GridLabel">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
 
-                            </Grid>
+                        </Grid>
 
-                            <Grid  x:FieldModifier="public" Name="GridTextBox" Grid.Column="2">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-                            </Grid>
+                        <Grid  x:FieldModifier="public" Name="GridTextBox" Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
                         </Grid>
                     </Grid>
-                </TabItem>
-                <TabItem Header="Вывод документа">
-                    <StackPanel>
-                        <Button  Name="Word" Margin="0,2,0,0" FontSize="32" Width="200" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Word_Click">Word</Button>
-                        <Button  Name="Excel" Margin="0,2,0,0" FontSize="32" Width="200" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Excel_Click">Excel</Button>
-                        <Button Name="PDF" Margin="0,2,0,0" FontSize="32" Width="200" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Click="PDF_Click">PDF</Button>
-                    </StackPanel>
-                </TabItem>
-            </TabControl>
+                </Grid>
 
-            <StackPanel Grid.Row="3">
 
-                <Button Name="btnAdd" Grid.Column="2" Grid.Row="2" Margin="0,2,0,0" FontSize="32" Width="200" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BtnAdd_Click_1">Добавить</Button>
-                <Button Name="btnUpd"  Grid.Column="2" Grid.Row="2"  Margin="0,2,0,0" FontSize="32" Width="200" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Click="BtnUpd_Click">Изменить</Button>
-                <Button Name="btnDlt" Grid.Column="2" Grid.Row="2"  Margin="0,2,0,0" FontSize="32" Width="200" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="BtnDlt_Click">Удалить</Button>
+        <StackPanel Grid.Row="3">
 
-            </StackPanel>
-            <ComboBox  Name="CbTables" Grid.Column="1" Grid.Row="2" FontSize="25" VerticalAlignment="Top" SelectionChanged="CbTables_SelectionChanged" HorizontalAlignment="Center"  Width="200" Height="40" Margin="0,5,0,0"></ComboBox>
-            <Button Grid.Column="2" Grid.Row="2" FontSize="32" Width="200"  HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click">Назад</Button>
-        </Grid>
+            <Button Name="btnAdd" Grid.Column="2" Grid.Row="2" Margin="0,2,0,0" FontSize="32" Width="200" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BtnAdd_Click_1">Добавить</Button>
+            <Button Name="btnUpd"  Grid.Column="2" Grid.Row="2"  Margin="0,2,0,0" FontSize="32" Width="200" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Click="BtnUpd_Click">Изменить</Button>
+            <Button Name="btnDlt" Grid.Column="2" Grid.Row="2"  Margin="0,2,0,0" FontSize="32" Width="200" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="BtnDlt_Click">Удалить</Button>
+
+        </StackPanel>
+        <ComboBox  Name="CbTables" Grid.Column="1" Grid.Row="2" FontSize="25" VerticalAlignment="Top" SelectionChanged="CbTables_SelectionChanged" HorizontalAlignment="Center"  Width="200" Height="40" Margin="0,5,0,0"></ComboBox>
+        <Button Grid.Column="2" Grid.Row="2" FontSize="32" Width="200"  HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click">Назад</Button>
+    </Grid>
 </UserControl>

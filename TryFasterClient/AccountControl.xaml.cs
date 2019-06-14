@@ -191,14 +191,29 @@ namespace TryFasterClient
             try
             {
                 lblUserName.Content = AuthorizControl.UserLogin;
-                DBConAct.cmd.CommandText = "select Surn_Client from client join [appuser] on [appuser_id] = id_appuser where [user_login] = '" + AuthorizControl.UserLogin + "'";
-                lblSurname.Content = DBConAct.execScalar();
-                DBConAct.cmd.CommandText = "select name_Client from client join [appuser] on [appuser_id] = id_appuser where [user_login] = '" + AuthorizControl.UserLogin + "'";
-                lblName.Content = DBConAct.execScalar();
-                DBConAct.cmd.CommandText = "select Email_Client from client join [appuser] on [appuser_id] = id_appuser where [user_login] = '" + AuthorizControl.UserLogin + "'";
-                lblMidn.Content = DBConAct.execScalar();
-                DBConAct.cmd.CommandText = "select Mob_Num_Client from client join [appuser] on [appuser_id] = id_appuser where [user_login] = '" + AuthorizControl.UserLogin + "'";
-                lblMobNum.Content = DBConAct.execScalar();
+                if (AuthorizControl.RoleName == "Клиент")
+                {
+                    DBConAct.cmd.CommandText = "select Surn_Client from client join [appuser] on [appuser_id] = id_appuser where [user_login] = '" + AuthorizControl.UserLogin + "'";
+                    lblSurname.Content = DBConAct.execScalar();
+                    DBConAct.cmd.CommandText = "select name_Client from client join [appuser] on [appuser_id] = id_appuser where [user_login] = '" + AuthorizControl.UserLogin + "'";
+                    lblName.Content = DBConAct.execScalar();
+                    DBConAct.cmd.CommandText = "select Email_Client from client join [appuser] on [appuser_id] = id_appuser where [user_login] = '" + AuthorizControl.UserLogin + "'";
+                    lblMidn.Content = DBConAct.execScalar();
+                    DBConAct.cmd.CommandText = "select Mob_Num_Client from client join [appuser] on [appuser_id] = id_appuser where [user_login] = '" + AuthorizControl.UserLogin + "'";
+                    lblMobNum.Content = DBConAct.execScalar();
+                }
+                else
+                {
+                    DBConAct.cmd.CommandText = "select Surn_Employee from Employee join [appuser] on [appuser_id] = id_appuser where [user_login] = '" + AuthorizControl.UserLogin + "'";
+                    lblSurname.Content = DBConAct.execScalar();
+                    DBConAct.cmd.CommandText = "select name_Employee from Employee join [appuser] on [appuser_id] = id_appuser where [user_login] = '" + AuthorizControl.UserLogin + "'";
+                    lblName.Content = DBConAct.execScalar();
+                    DBConAct.cmd.CommandText = "select Midn_Employee from Employee join [appuser] on [appuser_id] = id_appuser where [user_login] = '" + AuthorizControl.UserLogin + "'";
+                    lblMidn.Content = DBConAct.execScalar();
+                    DBConAct.cmd.CommandText = "select Mob_Num_Employee from Employee join [appuser] on [appuser_id] = id_appuser where [user_login] = '" + AuthorizControl.UserLogin + "'";
+                    lblMobNum.Content = DBConAct.execScalar();
+                    btnChangeData.Visibility = Visibility.Collapsed;
+                }
                 tbOldPass.Text = "";
                 tbNewPass.Text = "";
                 tbCheckNewPass.Text = "";

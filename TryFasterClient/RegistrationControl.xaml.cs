@@ -79,7 +79,7 @@ namespace TryFasterClient
                         try
                         {
                             logchk = 0;
-                            DBConAct.AppUser_Insert(tbLoginClient.Text, Crypt.GetHash(tbPassCleint.Password), 1); // добавляет зарегестрированные данные в бд                             
+                            DBConAct.AppUser_Insert(tbLoginClient.Text, tbPassCleint.Password, 1); // добавляет зарегестрированные данные в бд                             
                             DBConAct.cmd.CommandText = "select id_appuser from [appuser] where [User_login] = '" + tbLoginClient.Text + "'";
                             logchk = Convert.ToInt32(DBConAct.execScalar());
                             if (logchk != 0)

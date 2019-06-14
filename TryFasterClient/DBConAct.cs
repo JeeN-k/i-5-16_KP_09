@@ -197,7 +197,7 @@ namespace TryFasterClient
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@ID_Client", Id_Client);
                 cmd.Parameters.AddWithValue("@SC", SC);
-                cmd.Parameters.AddWithValue("@NC", NC);                
+                cmd.Parameters.AddWithValue("@NC", NC);
                 cmd.Parameters.AddWithValue("@MNC", MNC);
                 cmd.Parameters.AddWithValue("@EC", EC);
                 cmd.Parameters.AddWithValue("@AU", AU);
@@ -801,7 +801,7 @@ namespace TryFasterClient
 
         //Вызов процедуры добавления данных в таблице "Role"
         public static void Role_Insert(string Role_Name, bool client, bool booking, bool paymentcheck, bool employee, bool delivery, bool position,
-            bool product, bool transport, bool repair, bool race, bool race_client)
+            bool product, bool transport, bool repair, bool race, bool race_client, bool appuser, bool transport_Race)
         {
             spConfiguration("Role_Insert");
             try
@@ -819,6 +819,8 @@ namespace TryFasterClient
                 cmd.Parameters.AddWithValue("@Repair", repair);
                 cmd.Parameters.AddWithValue("@Race", race);
                 cmd.Parameters.AddWithValue("@Race_Client", race_client);
+                cmd.Parameters.AddWithValue("@Appuser", appuser);
+                cmd.Parameters.AddWithValue("@transport_race", transport_Race);
                 sql.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -834,7 +836,7 @@ namespace TryFasterClient
 
         //Вызов процедуры обновления данных в таблице "Role"
         public static void Role_Update(Int32 Id_Role, string RN, bool BK, bool CL, bool DL, bool EMP, bool PC,
-            bool POS, bool PRD, bool RACE, bool RC, bool REP, bool TRNS)
+            bool POS, bool PRD, bool RACE, bool RC, bool REP, bool TRNS, bool AU, bool TR)
         {
             spConfiguration("Role_Update");
             try
@@ -853,6 +855,8 @@ namespace TryFasterClient
                 cmd.Parameters.AddWithValue("@RC", RC);
                 cmd.Parameters.AddWithValue("@REP", REP);
                 cmd.Parameters.AddWithValue("@TRNS", TRNS);
+                cmd.Parameters.AddWithValue("@AU", AU);
+                cmd.Parameters.AddWithValue("@TR", TR);
                 sql.Open();
                 cmd.ExecuteNonQuery();
             }

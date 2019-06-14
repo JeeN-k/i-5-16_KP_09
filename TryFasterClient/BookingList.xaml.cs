@@ -50,7 +50,7 @@ namespace TryFasterClient
                 qrBooking += " order by (Booking_Date + ' ' + Booking_Time)  desc";
                 loadToDg();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //msg here
             }
