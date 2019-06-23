@@ -5,13 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Threading;
 
 namespace TryFasterClient
 {
@@ -34,28 +28,38 @@ namespace TryFasterClient
             InitializeComponent();
         }
 
-        private void BtnReserve_Click(object sender, RoutedEventArgs e)
+        private void ReserveRace()
         {
-            int clientId; // id клиента из таблицы бронирование            
-            int checkBook; // проверка на существующее бронирование на это время            
-            string timeHourBook = cbTimeHourBooking.SelectedValue.ToString(); // время начала бронирования
-            string timeMinBook = cbTimeMinBooking.SelectedValue.ToString(); // время начала бронирования
-            string dateBook = cbDateBooking.SelectedValue.ToString(); // дата бронирования            
-
             try
             {
-                DBConAct.cmd.CommandText = "select id_client from client join [appuser] on id_appuser = [appuser_Id] where [user_login] = '" + AuthorizControl.UserLogin + "'";
-                clientId = Convert.ToInt32(DBConAct.execScalar());
-                DBConAct.cmd.CommandText = "select count(*) from booking where client_id = " + clientId.ToString() + " and booking_time = '" + timeHourBook + ":" + timeMinBook +
-                    "' and booking_date = '" + dateBook + "'";
-                checkBook = Convert.ToInt32(DBConAct.execScalar());
-                if (checkBook == 0)
+                this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(delegate ()
                 {
-                    DBConAct.Booking_Insert(dateBook, timeHourBook + ":" + timeMinBook, Convert.ToInt32(cbCountPeople.SelectedValue.ToString()), clientId);
-                    MessageBox.Show("Вы забронированы на дату:" + dateBook + "\nВремя: " + timeHourBook + ":" + timeMinBook, "Успешное бронирование!",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else MessageBox.Show("У вас уже имеется бронирование на это время!\nИзмените дату или время!", "Повторное бронирование!", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                    int clientId; // id клиента из таблицы бронирование            
+                    int checkBook; // проверка на существующее бронирование на это время            
+                    string timeHourBook = cbTimeHourBooking.SelectedValue.ToString(); // время начала бронирования
+                    string timeMinBook = cbTimeMinBooking.SelectedValue.ToString(); // время начала бронирования
+                    string dateBook = cbDateBooking.SelectedValue.ToString(); // дата бронирования
+                    DBConAct.cmd.CommandText = "select id_client from client join [appuser] on id_appuser = [appuser_Id] where [user_login] = '" + AuthorizControl.UserLogin + "'";
+                    clientId = Convert.ToInt32(DBConAct.execScalar());
+                    DBConAct.cmd.CommandText = "select count(*) from booking where client_id = " + clientId.ToString() + " and booking_time = '" + timeHourBook + ":" + timeMinBook +
+                        "' and booking_date = '" + dateBook + "'";
+                    checkBook = Convert.ToInt32(DBConAct.execScalar());
+                    if (checkBook == 0)
+                    {
+                        DBConAct.Booking_Insert(dateBook, timeHourBook + ":" + timeMinBook, Convert.ToInt32(cbCountPeople.SelectedValue.ToString()), clientId);
+                        DBConAct.cmd.CommandText = "select CONCAT(name_Client + ' ', surn_client) from client where id_client = " + clientId;
+                        string clientName = DBConAct.execScalar();
+                        this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(delegate ()
+                        {
+                            DataWord.BookDocument(dateBook, timeHourBook + ":" + timeMinBook, cbCountPeople.SelectedValue.ToString(), clientName);
+                        }));
+                        MessageBox.Show("Вы забронированы на дату: " + dateBook + "\nВремя: " + timeHourBook + ":" + timeMinBook, "Успешное бронирование!",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else MessageBox.Show("У вас уже имеется бронирование на это время!\nИзмените дату или время!", "Повторное бронирование!", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                }));
             }
             catch (Exception ex)
             {
@@ -65,6 +69,13 @@ namespace TryFasterClient
             {
                 DBConAct.sql.Close();
             }
+        }
+
+        private void BtnReserve_Click(object sender, RoutedEventArgs e)
+        {
+            Thread trd = new Thread(new ThreadStart(ReserveRace));
+            trd.SetApartmentState(ApartmentState.STA);
+            trd.Start();
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)

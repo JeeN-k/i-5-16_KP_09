@@ -7,159 +7,150 @@
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1080">
     <Grid Grid.Row="1" Grid.Column="1" Loaded="Grid_Loaded" >
-        <!--<Grid.RowDefinitions>
-            <RowDefinition Height="380*"/>
-            <RowDefinition Height="39*"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+
+        <WrapPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Button Name="Save" Content="Сохранить"  FontSize="32" Height="40" Width="200" Margin="5" Click="Save_Click"/>
+            <Button Name="Back" Content="Назад"  FontSize="32"  Height="40" Width="150" Margin="5" Click="Close_Click"/>
+        </WrapPanel>
+
+        <StackPanel>
+            <Label Content="Выберите папку для экспортирования выбранных документов"/>
+            <WrapPanel>
+                <TextBox Name="tbPath" Width="500" VerticalContentAlignment="Center"/>
+                <Button Name="btBrowse" Content="..." Width="40" FontSize="20" Click="BtBrowse_Click"/>
+            </WrapPanel>
+            <Label Content="По умолчанию файлы будут импортироваться в папку с приложением."/>
+        </StackPanel>
+
         <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.1*" />
+                <RowDefinition Height="7*" />
+                <RowDefinition Height="1.1*" />
+            </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="500*"/>
-                <ColumnDefinition Width="200*"/>
-                <ColumnDefinition Width="200*"/>
-                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Name="Close" Grid.Column="3" Content="Закрыть"  FontSize="32"  Height="40" Margin="5" Style="{DynamicResource 123}" Click="Close_Click"/>
-            <Button Name="Save" Grid.Column="2" Content="Сохранить"  FontSize="32" Height="40" Margin="5" Click="Save_Click"/>
-        </Grid>
-        <TabControl Grid.Row="0" >
-            <TabItem Header="Глобальные">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="25*"/>
-                        <RowDefinition Height="491*"/>
-                    </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="В поле необходимо указать название кальянной, для дальнейшего использования в качестве 'шапок' для документов."/>
-                    <TextBox Grid.Row="1" Name="HookahNameInDoc"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Документы">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="55*" />
-                        <RowDefinition Height="461*" />
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
+            
+            <TextBlock Grid.Column="2" VerticalAlignment="Center" FontSize="15" HorizontalAlignment="Center">Настройка окна</TextBlock>
+            <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top">
+                <TextBlock Grid.Column="2" VerticalAlignment="Center" FontSize="15" HorizontalAlignment="Center">Настройка размера окна</TextBlock>
+                <ComboBox Name="cbResolution"  Height="35"  VerticalContentAlignment="Center"  Margin="20"/>
+                <TextBlock Grid.Column="2" VerticalAlignment="Center" FontSize="15" HorizontalAlignment="Center">Настройка границ окна</TextBlock>
+                <ComboBox Name="cbThikness"  Height="35"  VerticalContentAlignment="Center"  Margin="20"/>
+                <TextBlock Grid.Column="2" VerticalAlignment="Center" FontSize="15" HorizontalAlignment="Center">Настройка цвета границ</TextBlock>
+                <ComboBox Name="cbBordColor"  Height="35"  VerticalContentAlignment="Center"  Margin="20"/>
+            </StackPanel>
+
+            <Grid Grid.Row="0">
+                <GroupBox Header="Верхний отступ">
+                    <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1023*"/>
-                            <ColumnDefinition Width="38*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="20" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Content="Выберите папку для экспортирования выбранных документов"/>
-                        <TextBox Name="tbPath" Grid.Row="1" Grid.Column="0"/>
-                        <Button Name="btBrowse" Content="..." Grid.Row="1" Grid.Column="1" FontSize="20" Click="BtBrowse_Click"/>
-                    </Grid>
-                    <Grid Grid.Row="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="29*" />
-                            <RowDefinition Height="49*" />
-                            <RowDefinition Height="338*" />
-                            <RowDefinition Height="45*" />
-                        </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Content="По умолчанию файлы будут импортироваться в папку с приложением."/>
-                        <Grid Grid.Row="1">
-                            <GroupBox Header="Верхний отступ">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="20" />
-                                    </Grid.ColumnDefinitions>
 
-                                    <TextBox x:Name="Tb1" Grid.Column="0" IsEnabled="False" Text="0.0"/>
-                                    <StackPanel Grid.Column="1" Orientation="Vertical">
-                                        <Button Name="btUP1"  FontSize="7" Click="Button_Click">↑</Button>
-                                        <Button Name="btDOWN1" FontSize="7" Click="Button_Click">↓</Button>
-                                    </StackPanel>
-                                </Grid>
-                            </GroupBox>
-                        </Grid>
-                        <Grid Grid.Row="2">
+                        <TextBox x:Name="Tb1" Grid.Column="0" IsEnabled="False" Text="0.0"/>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center"  Orientation="Vertical">
+                            <Button Name="btUP1"  FontSize="7" Click="BtnUpDown_Click">↑</Button>
+                            <Button Name="btDOWN1" FontSize="7" Click="BtnUpDown_Click">↓</Button>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="0.4*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <GroupBox Header="Левый отступ">
+                        <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="139*"/>
-                                <ColumnDefinition Width="804*"/>
-                                <ColumnDefinition Width="118*"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="20" />
                             </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <GroupBox Header="Левый отступ">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="20" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="31*"/>
-                                            <RowDefinition Height="356*"/>
-                                        </Grid.RowDefinitions>
-
-                                        <TextBox x:Name="Tb2" Grid.Row="0" Grid.Column="0" IsEnabled="False" Text="0.0"/>
-                                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
-                                            <Button Name="btUP2" FontSize="7" Click="Button_Click">↑</Button>
-                                            <Button Name="btDOWN2" FontSize="7" Click="Button_Click">↓</Button>
-                                        </StackPanel>
-                                    </Grid>
-                                </GroupBox>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <GroupBox Header="Отступы в документе" >
-
-                                    <StackPanel Name="p1List" Background="Gray"  Height="389" Width="950" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                        <WrapPanel Name="pList" Background="White"  Margin="345,30,345,0" HorizontalAlignment="Center" VerticalAlignment="Center"  >
-                                            <Image x:Name="pnText"/>
-                                            --><!--Source="Resources/stroka.png"--> <!--Stretch="UniformToFill" StretchDirection="DownOnly"--> 
-                                            <!--<Image  Source="Resources/list.jpg" Stretch="UniformToFill" Height="366" Margin="346,7,346,5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="258"/>--><!--
-
-
-                                        </WrapPanel>
-                                    </StackPanel>
-                                </GroupBox>
-                            </Grid>
-                            <Grid Grid.Column="2">
-                                <GroupBox Header="Правый отступ">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="20" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="29*"/>
-                                            <RowDefinition Height="358*"/>
-                                        </Grid.RowDefinitions>
-
-                                        <TextBox x:Name="Tb3" Grid.Row="0" Grid.Column="0" IsEnabled="False" Text="0.0"/>
-                                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
-                                            <Button Name="btUP3" FontSize="7" Click="Button_Click">↑</Button>
-                                            <Button Name="btDOWN3" FontSize="7" Click="Button_Click">↓</Button>
-                                        </StackPanel>
-                                    </Grid>
-                                </GroupBox>
-                            </Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="10.5*"/>
+                            </Grid.RowDefinitions>
+                            <TextBox x:Name="Tb2" Grid.Row="0" Grid.Column="0" IsEnabled="False" Text="0.0"/>
+                            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+                                <Button Name="btUP2" FontSize="7" Click="BtnUpDown_Click">↑</Button>
+                                <Button Name="btDOWN2" FontSize="7" Click="BtnUpDown_Click">↓</Button>
+                            </StackPanel>
                         </Grid>
-                        <Grid Grid.Row="3">
-                            <GroupBox Header="Нижний отступ">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition Width="21" />
-                                    </Grid.ColumnDefinitions>
 
-                                    <TextBox x:Name="Tb4" Grid.Column="0" IsEnabled="False" Text="0.0"/>
-                                    <StackPanel Grid.Column="1" Orientation="Vertical">
-                                        <Button Name="btUP4" FontSize="7" Click="Button_Click">↑</Button>
-                                        <Button Name="btDOWN4" FontSize="7" Click="Button_Click">↓</Button>
-                                    </StackPanel>
-                                </Grid>
-                            </GroupBox>
-                        </Grid>
-                    </Grid>
+                    </GroupBox>
+
                 </Grid>
-            </TabItem>
 
-        </TabControl>-->
+                <Grid Grid.Column="1">
+                    <GroupBox Header="Отступы в документе" >
+                        <StackPanel Name="p1List" Width="225"  HorizontalAlignment="Center" VerticalAlignment="Center" >
+                            <WrapPanel Name="pList" Background="White"  Margin="0,0,0,0"  HorizontalAlignment="Center" VerticalAlignment="Center"  >
+                                <Image x:Name="pnText" Source="Resources/stroka.png" Stretch="UniformToFill" StretchDirection="DownOnly"/>
+                            </WrapPanel>
+                        </StackPanel>
+                    </GroupBox>
+                </Grid>
+
+                <Grid Grid.Column="2">
+                    <GroupBox Header="Правый отступ">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="10.5*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBox x:Name="Tb3" Grid.Row="0" Grid.Column="0" IsEnabled="False" Text="0.0"/>
+                            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+                                <Button Name="btUP3" FontSize="7" Click="BtnUpDown_Click">↑</Button>
+                                <Button Name="btDOWN3" FontSize="7" Click="BtnUpDown_Click">↓</Button>
+                            </StackPanel>
+                        </Grid>
+
+                    </GroupBox>
+
+                </Grid>
+
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <GroupBox Header="Нижний отступ">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="21" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="Tb4" Grid.Column="0" IsEnabled="False" Text="0.0"/>
+                        <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+                            <Button Name="btUP4" FontSize="7" Click="BtnUpDown_Click">↑</Button>
+                            <Button Name="btDOWN4" FontSize="7" Click="BtnUpDown_Click">↓</Button>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </Grid>
     </Grid>
 
 </UserControl>

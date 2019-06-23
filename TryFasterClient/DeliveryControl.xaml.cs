@@ -88,6 +88,13 @@ namespace TryFasterClient
             string prodName = ""; // название продукта
             string transName = "";
             string timeDeliv = tpTimeDelivery.Text; // Время поставки
+            string[] Products = new string[dgProductList.Items.Count];
+            string[] ProductType = new string[dgProductList.Items.Count];
+            string[] ProductCount = new string[dgProductList.Items.Count];
+
+            string[] Transports = new string[dgTransportList.Items.Count];
+            string[] TransportTpNum = new string[dgTransportList.Items.Count];
+            string[] TransportPower = new string[dgTransportList.Items.Count];
             if (timeDeliv.Length == 4) timeDeliv = timeDeliv.Insert(0, "0");
             try
             {
@@ -112,9 +119,18 @@ namespace TryFasterClient
                                     DBConAct.cmd.CommandText = "select count(*) from product where product_name = '" + content.Text + "'";
                                     repeatProd = Convert.ToInt32(DBConAct.execScalar());
                                     prodName = content.Text;
+                                    Products[y] = prodName;
                                 }
-                                if (i == 1) prodCountTb = Convert.ToInt32(content.Text);
-                                if (i == 2) prodType = content.Text;
+                                if (i == 1)
+                                {
+                                    prodCountTb = Convert.ToInt32(content.Text);
+                                    ProductCount[y] = prodCountTb.ToString();
+                                }
+                                if (i == 2)
+                                {
+                                    prodType = content.Text;
+                                    ProductType[y] = prodType;
+                                }
                             }
 
                             if (repeatProd != 0)
@@ -132,6 +148,8 @@ namespace TryFasterClient
                                 DBConAct.Product_Insert(prodName, prodCountTb, prodType, delivId);
                             }
                         }
+                        DataExcel.DeliveryProductDocument(invoice_Num, cbDateDelivery.SelectedValue.ToString(), timeDeliv, cbDeliveryType.SelectedValue.ToString(),
+                                Products, ProductType, ProductCount);
                         MessageBox.Show("Поставка успешно оформлена!", "Поставка оформлена!", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
@@ -142,12 +160,26 @@ namespace TryFasterClient
                             {
                                 var ci = new DataGridCellInfo(dgTransportList.Items[y], dgTransportList.Columns[i]); // возвращает ячейку
                                 var content = ci.Column.GetCellContent(ci.Item) as TextBlock; // возвращает значение из ячейки
-                                if (i == 0) transName = content.Text;
-                                if (i == 1) transTPNum = content.Text;                                
-                                if (i == 2) transPower = content.Text;
+                                if (i == 0)
+                                {
+                                    transName = content.Text;
+                                    Transports[y] = transName;
+                                }
+                                if (i == 1)
+                                {
+                                    transTPNum = content.Text;
+                                    TransportTpNum[y] = transTPNum;
+                                }
+                                if (i == 2)
+                                {
+                                    transPower = content.Text;
+                                    TransportPower[y] = transPower;
+                                }
                             }
                             DBConAct.Transport_Insert(transName, transTPNum, "Идеально", transPower, delivId);
                         }
+                        DataExcel.DeliveryTransporttDocument(invoice_Num, cbDateDelivery.SelectedValue.ToString(), timeDeliv, cbDeliveryType.SelectedValue.ToString(),
+                            Transports, TransportTpNum, TransportPower);
                         MessageBox.Show("Поставка успешно оформлена!", "Поставка оформлена!", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
@@ -206,11 +238,11 @@ namespace TryFasterClient
                 if (!char.IsDigit(transPower[2])) transPower = transPower.Remove(2, 1).Insert(2, "");
 
                 if (transName != "" && transTpNum != "" && transPower != "")
-                    {
-                        var data = new Transport { TransportName = transName, TransportPtNum = transTpNum, TransportPower = transPower }; // добавление в datagrid с помощью отдельного класса
-                        dgTransportList.Items.Add(data);
-                    }
-                    else MessageBox.Show("Заполните поля ввода!", "Пустое поле", MessageBoxButton.OK, MessageBoxImage.Information);
+                {
+                    var data = new Transport { TransportName = transName, TransportPtNum = transTpNum, TransportPower = transPower }; // добавление в datagrid с помощью отдельного класса
+                    dgTransportList.Items.Add(data);
+                }
+                else MessageBox.Show("Заполните поля ввода!", "Пустое поле", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -261,7 +293,7 @@ namespace TryFasterClient
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             comboboxLoad("select * from product", "product", 1, cbProductName);
-            comboboxLoad("select * from transport", "transport", 1, cbTransportName);            
+            comboboxLoad("select * from transport", "transport", 1, cbTransportName);
             tpTimeDelivery.Value = DateTime.Now;
             tpTimeDelivery.Maximum = DateTime.Now;
             cbDateDelivery.ItemsSource = dates;

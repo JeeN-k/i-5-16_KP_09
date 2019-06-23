@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TryFasterClient"
              mc:Ignorable="d" 
-            WindowStyle="None" ResizeMode="NoResize"
-            Title="MainWindow"
-            d:DesignHeight="720" d:DesignWidth="1280" FontFamily="Yandex Sans Text Light"
+            WindowStyle="None" ResizeMode="NoResize" 
+            Title="TryFaster Client" x:FieldModifier="public"
+            d:DesignHeight="720" d:DesignWidth="1350" FontFamily="Yandex Sans Text Light"
             WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="ImageButton" TargetType="{x:Type Image}">
@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.1*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="0.9*"></ColumnDefinition>
             <ColumnDefinition Width="0.1*" ></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Image Grid.ColumnSpan="3" Grid.RowSpan="3" Source="Resources/Background.jpg" Stretch="Fill"  />

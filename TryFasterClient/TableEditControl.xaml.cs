@@ -434,8 +434,8 @@ namespace TryFasterClient
                         DBConAct.AppUser_Update(ID_table, (textBoxes[0] as TextBox).Text, (textBoxes[1] as TextBox).Text, FKIDS[2]);
                         break;
                 }
-                MessageBox.Show("Данные таблицы " + CbTables.SelectedValue.ToString() + " успешно обновлены!", "Данные обновлены", MessageBoxButton.OK, MessageBoxImage.Information);
                 LoadDBGrid();
+                MessageBox.Show("Данные таблицы " + CbTables.SelectedValue.ToString() + " успешно обновлены!", "Данные обновлены", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString(), "Ошибка добавления!"); }
         }

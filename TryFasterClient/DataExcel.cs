@@ -6,9 +6,10 @@ namespace TryFasterClient
 {
     class DataExcel
     {
-        public static void DeliveryDocument(string Invoice_Num, string Delivery_Date, string Delivery_Time, string Product_name, string Product_Count)
+        public static void DeliveryProductDocument(string Invoice_Num, string Delivery_Date, string Delivery_Time, string Delivery_Type, string[] Product_name,
+            string[] Product_Type, string[] Product_Count)
         {
-            string name = Registr.DirPath + DateTime.Now.ToString("_hh_mm_ss_dd_MM_yyyy") + ".xlsx";
+            string name = Registr.DirPath + "Поставка_Товары_" + DateTime.Now.ToString("_hh_mm_ss_dd_MM_yyyy") + ".xlsx";
             excel.Application application = new excel.Application();
             excel.Workbook workbook = application.Workbooks.Add();
             excel.Worksheet worksheet = (excel.Worksheet)workbook.ActiveSheet;
@@ -20,17 +21,36 @@ namespace TryFasterClient
                 worksheet.Name = "Поставка";
                 worksheet.Columns[1].ColumnWidth = 21;
                 worksheet.Columns[2].ColumnWidth = 21;
-                worksheet.Cells[1, 1] = Registr.OrganizationName;
+                worksheet.Columns[3].ColumnWidth = 24;
+                worksheet.Cells[1, 1] = "TryFaster";
                 worksheet.Cells[1, 1].HorizontalAlignment = excel.XlHAlign.xlHAlignCenter;
                 worksheet.Cells[1, 1].VerticalAlignment = excel.XlHAlign.xlHAlignCenter;
                 worksheet.get_Range("A1", "B7").Borders.LineStyle = excel.XlLineStyle.xlContinuous;
-                worksheet.get_Range("B9").Borders[excel.XlBordersIndex.xlEdgeBottom].LineStyle = excel.XlLineStyle.xlContinuous;
-                worksheet.get_Range("B10").Borders[excel.XlBordersIndex.xlEdgeBottom].LineStyle = excel.XlLineStyle.xlContinuous;
-                worksheet.Cells[3, 1] = "Номер докладной";
+                worksheet.get_Range("A1", "B7").Borders[excel.XlBordersIndex.xlEdgeRight].Weight = excel.XlBorderWeight.xlMedium;
+
+                worksheet.get_Range("B" + (Product_name.Length + 7 + 1).ToString()).Borders[excel.XlBordersIndex.xlEdgeBottom].LineStyle = excel.XlLineStyle.xlContinuous;
+                worksheet.get_Range("B" + (Product_name.Length + 7 + 2).ToString()).Borders[excel.XlBordersIndex.xlEdgeBottom].LineStyle = excel.XlLineStyle.xlContinuous;
+                worksheet.Cells[7 + Product_name.Length + 1, 1] = "Подпись кладовщика";
+                worksheet.Cells[7 + Product_name.Length + 2, 1] = "Подпись курьера";
+
+                worksheet.get_Range("A7", "C7").Borders[excel.XlBordersIndex.xlEdgeBottom].Weight = excel.XlBorderWeight.xlMedium;
+                worksheet.get_Range("A7", "C7").Borders[excel.XlBordersIndex.xlEdgeLeft].Weight = excel.XlBorderWeight.xlMedium;
+                worksheet.get_Range("A7", "C7").Borders[excel.XlBordersIndex.xlEdgeTop].Weight = excel.XlBorderWeight.xlMedium;
+                worksheet.get_Range("A7", "C7").Borders[excel.XlBordersIndex.xlEdgeRight].Weight = excel.XlBorderWeight.xlMedium;
+                worksheet.get_Range("A8", "C" + (Product_name.Length + 7).ToString()).Borders.LineStyle = excel.XlLineStyle.xlContinuous;
+                worksheet.get_Range("A8", "C" + (Product_name.Length + 7).ToString()).Borders[excel.XlBordersIndex.xlEdgeBottom].Weight = excel.XlBorderWeight.xlMedium;
+                worksheet.get_Range("A8", "C" + (Product_name.Length + 7).ToString()).Borders[excel.XlBordersIndex.xlEdgeLeft].Weight = excel.XlBorderWeight.xlMedium;
+                worksheet.get_Range("A8", "C" + (Product_name.Length + 7).ToString()).Borders[excel.XlBordersIndex.xlEdgeTop].Weight = excel.XlBorderWeight.xlMedium;
+                worksheet.get_Range("A8", "C" + (Product_name.Length + 7).ToString()).Borders[excel.XlBordersIndex.xlEdgeRight].Weight = excel.XlBorderWeight.xlMedium;
+
+                worksheet.get_Range("A1", "B2").Borders.Weight = excel.XlBorderWeight.xlMedium;
+                worksheet.Cells[3, 1] = "Номер накладной";
                 worksheet.Cells[4, 1] = "Дата поставки";
                 worksheet.Cells[5, 1] = "Время поставки";
-                worksheet.Cells[6, 1] = "Наименование товара";
-                worksheet.Cells[7, 1] = "Количество товара";
+                worksheet.Cells[6, 1] = "Тип поставки";
+                worksheet.Cells[7, 1] = "Наименование товара";
+                worksheet.Cells[7, 2] = "Тип товара";
+                worksheet.Cells[7, 3] = "Количество товара";
 
                 worksheet.Cells[3, 2].HorizontalAlignment = excel.XlHAlign.xlHAlignCenter;
                 worksheet.Cells[4, 2].HorizontalAlignment = excel.XlHAlign.xlHAlignCenter;
@@ -41,12 +61,17 @@ namespace TryFasterClient
                 worksheet.Cells[3, 2] = Invoice_Num;
                 worksheet.Cells[4, 2] = Delivery_Date;
                 worksheet.Cells[5, 2] = Delivery_Time;
-                worksheet.Cells[6, 2] = Product_name;
-                worksheet.Cells[7, 2] = Product_Count;
+                worksheet.Cells[6, 2] = Delivery_Type;
+                int i = 0;
+                foreach (string products in Product_name)
+                {
+                    worksheet.Cells[i + 8, 1] = products;
+                    worksheet.Cells[i + 8, 2] = Product_Type[i];
+                    worksheet.Cells[i + 8, 3] = Product_Count[i];
+                    i++;
+                }
 
-                worksheet.Cells[9, 1] = "Подпись кладовщика";
-                worksheet.Cells[10, 1] = "Подпись курьера";
-                MessageBox.Show(name);
+
             }
             catch (Exception ex)
             {
@@ -60,9 +85,10 @@ namespace TryFasterClient
             }
         }
 
-        public static void SmetaDocument(string Invoice_Num, string Delivery_Date, string Delivery_Time, string Product_Type, string Product_Count)
+        public static void DeliveryTransporttDocument(string Invoice_Num, string Delivery_Date, string Delivery_Time, string Delivery_Type, string[] Transport_Name,
+           string[] TransportTpNum, string[] TransportPower)
         {
-            string name = Registr.DirPath + DateTime.Now.ToString("_hh_mm_ss_dd_MM_yyyy") + ".xlsx";
+            string name = Registr.DirPath + "Поставка_Транспорт_" + DateTime.Now.ToString("_hh_mm_ss_dd_MM_yyyy") + ".xlsx";
             excel.Application application = new excel.Application();
             excel.Workbook workbook = application.Workbooks.Add();
             excel.Worksheet worksheet = (excel.Worksheet)workbook.ActiveSheet;
@@ -71,19 +97,39 @@ namespace TryFasterClient
                 excel.Range _excelCells = (excel.Range)worksheet.get_Range("A1", "B2").Cells;
                 // Производим объединение
                 _excelCells.Merge(Type.Missing);
-                worksheet.Name = "Смета об учёте сырья";
+                worksheet.Name = "Поставка";
                 worksheet.Columns[1].ColumnWidth = 21;
                 worksheet.Columns[2].ColumnWidth = 21;
-                worksheet.Cells[1, 1] = Registr.OrganizationName;
+                worksheet.Columns[3].ColumnWidth = 24;
+                worksheet.Cells[1, 1] = "TryFaster";
                 worksheet.Cells[1, 1].HorizontalAlignment = excel.XlHAlign.xlHAlignCenter;
                 worksheet.Cells[1, 1].VerticalAlignment = excel.XlHAlign.xlHAlignCenter;
                 worksheet.get_Range("A1", "B7").Borders.LineStyle = excel.XlLineStyle.xlContinuous;
-                worksheet.get_Range("B9").Borders[excel.XlBordersIndex.xlEdgeBottom].LineStyle = excel.XlLineStyle.xlContinuous;
-                worksheet.Cells[3, 1] = "Номер сметы";
-                worksheet.Cells[4, 1] = "Дата";
-                worksheet.Cells[5, 1] = "Время";
-                worksheet.Cells[6, 1] = "Вид товара";
-                worksheet.Cells[7, 1] = "Количество товара";
+                worksheet.get_Range("A1", "B7").Borders[excel.XlBordersIndex.xlEdgeRight].Weight = excel.XlBorderWeight.xlMedium;
+
+                worksheet.get_Range("B" + (Transport_Name.Length + 7 + 1).ToString()).Borders[excel.XlBordersIndex.xlEdgeBottom].LineStyle = excel.XlLineStyle.xlContinuous;
+                worksheet.get_Range("B" + (Transport_Name.Length + 7 + 2).ToString()).Borders[excel.XlBordersIndex.xlEdgeBottom].LineStyle = excel.XlLineStyle.xlContinuous;
+                worksheet.Cells[7 + Transport_Name.Length + 1, 1] = "Подпись кладовщика";
+                worksheet.Cells[7 + Transport_Name.Length + 2, 1] = "Подпись курьера";
+
+                worksheet.get_Range("A7", "C7").Borders[excel.XlBordersIndex.xlEdgeBottom].Weight = excel.XlBorderWeight.xlMedium;
+                worksheet.get_Range("A7", "C7").Borders[excel.XlBordersIndex.xlEdgeLeft].Weight = excel.XlBorderWeight.xlMedium;
+                worksheet.get_Range("A7", "C7").Borders[excel.XlBordersIndex.xlEdgeTop].Weight = excel.XlBorderWeight.xlMedium;
+                worksheet.get_Range("A7", "C7").Borders[excel.XlBordersIndex.xlEdgeRight].Weight = excel.XlBorderWeight.xlMedium;
+                worksheet.get_Range("A8", "C" + (Transport_Name.Length + 7).ToString()).Borders.LineStyle = excel.XlLineStyle.xlContinuous;
+                worksheet.get_Range("A8", "C" + (Transport_Name.Length + 7).ToString()).Borders[excel.XlBordersIndex.xlEdgeBottom].Weight = excel.XlBorderWeight.xlMedium;
+                worksheet.get_Range("A8", "C" + (Transport_Name.Length + 7).ToString()).Borders[excel.XlBordersIndex.xlEdgeLeft].Weight = excel.XlBorderWeight.xlMedium;
+                worksheet.get_Range("A8", "C" + (Transport_Name.Length + 7).ToString()).Borders[excel.XlBordersIndex.xlEdgeTop].Weight = excel.XlBorderWeight.xlMedium;
+                worksheet.get_Range("A8", "C" + (Transport_Name.Length + 7).ToString()).Borders[excel.XlBordersIndex.xlEdgeRight].Weight = excel.XlBorderWeight.xlMedium;
+
+                worksheet.get_Range("A1", "B2").Borders.Weight = excel.XlBorderWeight.xlMedium;
+                worksheet.Cells[3, 1] = "Номер накладной";
+                worksheet.Cells[4, 1] = "Дата поставки";
+                worksheet.Cells[5, 1] = "Время поставки";
+                worksheet.Cells[6, 1] = "Тип поставки";
+                worksheet.Cells[7, 1] = "Наименование транспорта";
+                worksheet.Cells[7, 2] = "Номер ПТС";
+                worksheet.Cells[7, 3] = "Мощность";
 
                 worksheet.Cells[3, 2].HorizontalAlignment = excel.XlHAlign.xlHAlignCenter;
                 worksheet.Cells[4, 2].HorizontalAlignment = excel.XlHAlign.xlHAlignCenter;
@@ -94,11 +140,17 @@ namespace TryFasterClient
                 worksheet.Cells[3, 2] = Invoice_Num;
                 worksheet.Cells[4, 2] = Delivery_Date;
                 worksheet.Cells[5, 2] = Delivery_Time;
-                worksheet.Cells[6, 2] = Product_Type;
-                worksheet.Cells[7, 2] = Product_Count;
+                worksheet.Cells[6, 2] = Delivery_Type;
+                int i = 0;
+                foreach (string transports in Transport_Name)
+                {
+                    worksheet.Cells[i + 8, 1] = transports;
+                    worksheet.Cells[i + 8, 2] = TransportTpNum[i];
+                    worksheet.Cells[i + 8, 3] = TransportPower[i];
+                    i++;
+                }
 
-                worksheet.Cells[9, 1] = "Подпись кладовщика";
-                MessageBox.Show(name);
+
             }
             catch (Exception ex)
             {

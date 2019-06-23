@@ -193,6 +193,16 @@ namespace TryFasterClient.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap list {
+            get {
+                object obj = ResourceManager.GetObject("list", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap RaceLogo {
             get {
                 object obj = ResourceManager.GetObject("RaceLogo", resourceCulture);
@@ -236,6 +246,16 @@ namespace TryFasterClient.Properties {
         internal static System.Drawing.Bitmap SettingsText {
             get {
                 object obj = ResourceManager.GetObject("SettingsText", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stroka {
+            get {
+                object obj = ResourceManager.GetObject("stroka", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

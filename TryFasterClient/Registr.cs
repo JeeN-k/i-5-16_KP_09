@@ -7,8 +7,8 @@ namespace TryFasterClient
     class Registr
     {
         public static string UI = "Empty", PW = "Empty", SE = "Empty";//логин пароль и запоминанее пароля в реестре
-        public static string OrganizationName = "", DirPath = "";//название организации и путь сохранения файлов
-        public static double DocLM = 0, DocTM = 0, DocRM = 0, DocBM = 0;//отсутпы сохраненные в реестре
+        public static string OrganizationName = "", DirPath = "", WinRes = "", BordThik = "", BordColor = "";//название организации и путь сохранения файлов
+        public static double DocLM = 0, DocTM = 0, DocRM = 0, DocBM = 0;//отсутпы сохраненные в реестре        
 
         static public void Registry_Get()//получение параметров
         {
@@ -45,6 +45,35 @@ namespace TryFasterClient
             }
         }
 
+        public static void ConfigurationGet()//сохранение отступов
+        {
+            RegistryKey registry = Registry.CurrentUser;
+            RegistryKey registryKey = registry.CreateSubKey("TryFaster");
+            RegistryKey subKey = registryKey.CreateSubKey("Configuration");
+            try
+            {
+                DirPath = subKey.GetValue("DirPath").ToString();
+                DocLM = Convert.ToDouble(subKey.GetValue("DocLM").ToString());
+                DocTM = Convert.ToDouble(subKey.GetValue("DocTM").ToString());
+                DocRM = Convert.ToDouble(subKey.GetValue("DocRM").ToString());
+                DocBM = Convert.ToDouble(subKey.GetValue("DocBM").ToString());
+                WinRes = subKey.GetValue("WinRes").ToString();
+                BordThik = subKey.GetValue("BordThik").ToString();
+                BordColor = subKey.GetValue("BordColor").ToString();
+            }
+            catch
+            {
+                subKey.SetValue("DirPath", String.Empty);
+                subKey.SetValue("DocLM", 0.0);
+                subKey.SetValue("DocTM", 0.0);
+                subKey.SetValue("DocRM", 0.0);
+                subKey.SetValue("DocBM", 0.0);
+                subKey.SetValue("WinRes", 0);
+                subKey.SetValue("BordThik", 0);
+                subKey.SetValue("BordColor", "Black");
+            }
+        }
+
         static public void SaveEnterReg(string Login, string Password)//сохранение пароля и логина в реестре
         {
             RegistryKey registry = Registry.CurrentUser;
@@ -59,6 +88,24 @@ namespace TryFasterClient
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        public static void DocumentConfigurationSet(string Path, decimal DocLM, decimal DocTM,//пусть сохранения документа
+    decimal DocRM, decimal DocBM, string WinRes, string BordThik, string BordColor)
+        {
+            RegistryKey registry = Registry.CurrentUser;
+            RegistryKey registryKey = registry.CreateSubKey("TryFaster");
+            RegistryKey subKey = registryKey.CreateSubKey("Configuration");
+
+            subKey.SetValue("DirPath", Path);
+            subKey.SetValue("DocLM", DocLM);
+            subKey.SetValue("DocTM", DocTM);
+            subKey.SetValue("DocRM", DocRM);
+            subKey.SetValue("DocBM", DocBM);
+            subKey.SetValue("WinRes", WinRes);
+            subKey.SetValue("BordThik", BordThik);
+            subKey.SetValue("BordColor", BordColor);
+            ConfigurationGet();
         }
     }
 }

@@ -46,6 +46,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -93,6 +94,7 @@
     </Compile>
     <Compile Include="Crypt.cs" />
     <Compile Include="DataExcel.cs" />
+    <Compile Include="DataWord.cs" />
     <Compile Include="DeliveryControl.xaml.cs">
       <DependentUpon>DeliveryControl.xaml</DependentUpon>
     </Compile>
@@ -270,6 +272,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\AdminText.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\list.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\stroka.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

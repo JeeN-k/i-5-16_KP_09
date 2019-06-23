@@ -143,11 +143,13 @@ namespace TryFasterClient
                 //ImgRace.Visibility = Visibility.Visible;
                 ImgAccount.Visibility = Visibility.Visible;
                 ImgTableWork.Visibility = Visibility.Visible;
+                ImgSettings.Visibility = Visibility.Visible;
             }
             else if (AuthorizControl.RoleName == "Директор")
             {
                 ImgBooking.Visibility = Visibility.Visible;
                 ImgDelivery.Visibility = Visibility.Visible;
+                ImgSettings.Visibility = Visibility.Visible;
                 ImgTableWork.Visibility = Visibility.Visible;
                 //ImgRace.Visibility = Visibility.Visible;
             }
@@ -155,6 +157,7 @@ namespace TryFasterClient
             {
                 ImgBooking.Visibility = Visibility.Visible;
                 ImgTableWork.Visibility = Visibility.Visible;
+                ImgSettings.Visibility = Visibility.Visible;
             }
             else if (AuthorizControl.RoleName == "Администратор")
             {
@@ -163,13 +166,21 @@ namespace TryFasterClient
                 ImgDelivery.Visibility = Visibility.Visible;
                 ImgBooking.Visibility = Visibility.Visible;
                 ImgAdmin.Visibility = Visibility.Visible;
-                //ImgSettings.Visibility = Visibility.Visible;
+                ImgSettings.Visibility = Visibility.Visible;
             }
             else if (AuthorizControl.RoleName == "Клиент")
             {
                 ImgBooking.Visibility = Visibility.Visible;
-                //ImgSettings.Visibility = Visibility.Visible;
+                ImgSettings.Visibility = Visibility.Visible;
             }
+        }
+
+        private void BtnTest_Click(object sender, RoutedEventArgs e)
+        {
+            //Application.Current.MainWindow.Width = 1720;
+            //Application.Current.MainWindow.Height = 800;
+            //Application.Current.MainWindow.BorderThickness = new Thickness(5, 5, 5, 5);
+            Application.Current.MainWindow.BorderBrush = Brushes.Red;            
         }
     }
 }

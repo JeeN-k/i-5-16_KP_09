@@ -139,7 +139,7 @@ namespace TryFasterClient
 
         private void CbRoles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbRoles.SelectedValue != "<Новая роль>")
+            if ((string)cbRoles.SelectedValue != "<Новая роль>")
             {
                 DBConAct.cmd.CommandText = "select id_role from role where role_name = '" + cbRoles.SelectedValue + "'";
                 idrole = DBConAct.execScalar();
@@ -297,7 +297,7 @@ namespace TryFasterClient
             {
                 MessageBox.Show(ex.ToString(), "Ошибка");
             }
-            catch (NullReferenceException nre)
+            catch (NullReferenceException)
             {
 
             }
