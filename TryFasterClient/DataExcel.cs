@@ -7,7 +7,7 @@ namespace TryFasterClient
     class DataExcel
     {
         public static void DeliveryProductDocument(string Invoice_Num, string Delivery_Date, string Delivery_Time, string Delivery_Type, string[] Product_name,
-            string[] Product_Type, string[] Product_Count)
+            string[] Product_Type, string[] Product_Count) // Вывод документа поставки продуктов
         {
             string name = Registr.DirPath + "Поставка_Товары_" + DateTime.Now.ToString("_hh_mm_ss_dd_MM_yyyy") + ".xlsx";
             excel.Application application = new excel.Application();
@@ -86,7 +86,7 @@ namespace TryFasterClient
         }
 
         public static void DeliveryTransporttDocument(string Invoice_Num, string Delivery_Date, string Delivery_Time, string Delivery_Type, string[] Transport_Name,
-           string[] TransportTpNum, string[] TransportPower)
+           string[] TransportTpNum, string[] TransportPower) // Вывод документа поставки транспорта
         {
             string name = Registr.DirPath + "Поставка_Транспорт_" + DateTime.Now.ToString("_hh_mm_ss_dd_MM_yyyy") + ".xlsx";
             excel.Application application = new excel.Application();

@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Text.RegularExpressions;
 
@@ -22,13 +16,13 @@ namespace TryFasterClient
             InitializeComponent();
         }
 
-        private void TbSurnClient_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void TbSurnClient_PreviewTextInput(object sender, TextCompositionEventArgs e) // Контроль ввода фамилии
         {
             if (char.IsLetter(e.Text, 0)) return;
             e.Handled = true;
         }
 
-        private void TbLoginClient_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void TbLoginClient_PreviewTextInput(object sender, TextCompositionEventArgs e) // Контроль ввода логина
         {
             if (char.IsDigit(e.Text, 0)) return;
             e.Handled = true;
@@ -36,12 +30,12 @@ namespace TryFasterClient
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        private void BtnBack_Click(object sender, RoutedEventArgs e) //К авторизации
         {
             LinkControl.Link(new AuthorizControl());
         }
 
-        private void BtnReg_Click(object sender, RoutedEventArgs e)
+        private void BtnReg_Click(object sender, RoutedEventArgs e) //Процесс регистрации
         {
             if (tbLoginClient.Text == "" || tbPassCleint.Text == "" || tbPassCheckClient.Text == "" || tbSurnClient.Text == ""
                 || tbNameClient.Text == "" || tbEmailClient.Text == "" || tbMobNum.Text == "") // если одно из поле пустое            
@@ -99,7 +93,7 @@ namespace TryFasterClient
             }
         }
 
-        private void TbEmailClient_TextChanged(object sender, TextChangedEventArgs e)
+        private void TbEmailClient_TextChanged(object sender, TextChangedEventArgs e) // Контроль ввода данных в поля
         {
             string patEm = @"^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$";
             if (!Regex.IsMatch(tbEmailClient.Text, patEm, RegexOptions.IgnoreCase) || tbLoginClient.Text == "" ||

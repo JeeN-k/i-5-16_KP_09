@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TryFasterClient
 {
@@ -25,7 +16,7 @@ namespace TryFasterClient
             InitializeComponent();
         }
 
-        private void ChangeImage(Image img, string ImageUrl)
+        private void ChangeImage(Image img, string ImageUrl) //Смена картинки
         {
             img.Source = new BitmapImage(new Uri(ImageUrl, UriKind.RelativeOrAbsolute));
         }
@@ -90,21 +81,6 @@ namespace TryFasterClient
             ChangeImage(ImgBooking, "Resources/BookingLogo.png");
         }
 
-        private void ImgRace_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            LinkControl.Link(new RaceControl());
-        }
-
-        private void ImgRace_MouseEnter(object sender, MouseEventArgs e)
-        {
-            ChangeImage(ImgRace, "Resources/RaceText.png");
-        }
-
-        private void ImgRace_MouseLeave(object sender, MouseEventArgs e)
-        {
-            ChangeImage(ImgRace, "Resources/RaceLogo.png");
-        }
-
         private void ImgSettings_MouseDown(object sender, MouseButtonEventArgs e)
         {
             LinkControl.Link(new SettingsControl());
@@ -135,7 +111,7 @@ namespace TryFasterClient
             ChangeImage(ImgAdmin, "Resources/AdminLogo.png");
         }
 
-        private void UcMenu_Loaded(object sender, RoutedEventArgs e)
+        private void UcMenu_Loaded(object sender, RoutedEventArgs e) // Проверка ролей
         {
             if (AuthorizControl.RoleName == "Механик")
             {
@@ -173,14 +149,6 @@ namespace TryFasterClient
                 ImgBooking.Visibility = Visibility.Visible;
                 ImgSettings.Visibility = Visibility.Visible;
             }
-        }
-
-        private void BtnTest_Click(object sender, RoutedEventArgs e)
-        {
-            //Application.Current.MainWindow.Width = 1720;
-            //Application.Current.MainWindow.Height = 800;
-            //Application.Current.MainWindow.BorderThickness = new Thickness(5, 5, 5, 5);
-            Application.Current.MainWindow.BorderBrush = Brushes.Red;            
         }
     }
 }

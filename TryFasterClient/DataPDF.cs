@@ -4,9 +4,10 @@ using System.Windows;
 
 namespace TryFasterClient
 {
-    class DataWord
+    class DataPDF
     {
-        public static void BookDocument(string BookingDate, string BookingTime, string BookingCount, string BookingClient) // Вывод документа бронирования
+
+        public static void BookDocument(string BookingDate, string BookingTime, string BookingCount, string BookingClient) // Вывод документа броинрования
         {
             word.Application application = new word.Application();
             word.Document document = application.Documents.Add(Visible: true);
@@ -22,6 +23,8 @@ namespace TryFasterClient
                     = application.CentimetersToPoints(Convert.ToSingle(Registr.DocTM));
                 document.Sections.PageSetup.BottomMargin
                     = application.CentimetersToPoints(Convert.ToSingle(Registr.DocBM));
+                range.Font.Name = "Times New Roman";
+                range.Font.Size = 16;
                 range.Text = "Картинг 'TryFaster'";
                 range.ParagraphFormat.Alignment
                     = word.WdParagraphAlignment.wdAlignParagraphCenter;
@@ -36,31 +39,33 @@ namespace TryFasterClient
                 Name_Doc.Format.Alignment = word.WdParagraphAlignment.wdAlignParagraphCenter;
                 Name_Doc.Range.Font.Name = "Times New Roman";
                 Name_Doc.Range.Font.Size = 16;
-                Name_Doc.Range.Text = "Бронирование";
+                Name_Doc.Range.Text = "Билет";
                 document.Paragraphs.Add();
                 document.Paragraphs.Add();
                 document.Paragraphs.Add();
                 word.Paragraph pTable = document.Paragraphs.Add();
                 word.Table Book = document.Tables.Add(pTable.Range, 4,
                     2);
-                Book.Borders.InsideLineStyle = word.WdLineStyle.wdLineStyleSingle;
-                Book.Borders.OutsideLineStyle = word.WdLineStyle.wdLineStyleSingle;
+                Book.Borders.InsideLineStyle = word.WdLineStyle.wdLineStyleNone;
+                Book.Borders.OutsideLineStyle = word.WdLineStyle.wdLineStyleNone;
 
                 Book.Range.ParagraphFormat.Alignment = word.WdParagraphAlignment.wdAlignParagraphCenter;
                 Book.Range.Paragraphs.Alignment = word.WdParagraphAlignment.wdAlignParagraphCenter;
                 Book.Rows.Alignment = word.WdRowAlignment.wdAlignRowCenter;
 
-                Book.Cell(1, 1).Range.Text = "Дата";
-                Book.Cell(2, 1).Range.Text = "Время";
-                Book.Cell(3, 1).Range.Text = "Количество клиентов";
-                Book.Cell(4, 1).Range.Text = "Забронировавший клиент";
-                Book.Range.Font.Size = 11;
+                Book.Range.Font.Size = 14;
                 Book.Range.Font.Name = "Times New Roman";
-                Book.Columns[1].AutoFit();
-                Book.Cell(1, 2).Range.Text = BookingDate;
-                Book.Cell(2, 2).Range.Text = BookingTime;
-                Book.Cell(3, 2).Range.Text = BookingCount;
-                Book.Cell(4, 2).Range.Text = BookingClient;
+                Book.Cell(2, 1).Range.Text = "Дата: ";
+                Book.Cell(3, 1).Range.Text = "Время: ";
+                Book.Cell(4, 1).Range.Text = "Количество клиентов: ";
+                Book.Cell(1, 1).Range.Text = "Клиент: ";
+                Book.Columns[1].AutoFit();                
+                Book.Range.Font.Size = 12;
+                Book.Range.Font.Name = "Times New Roman";
+                Book.Cell(2, 2).Range.Text = BookingDate;
+                Book.Cell(3, 2).Range.Text = BookingTime;
+                Book.Cell(4, 2).Range.Text = BookingCount;
+                Book.Cell(1, 2).Range.Text = BookingClient;
             }
             catch (Exception ex)
             {
@@ -68,7 +73,8 @@ namespace TryFasterClient
             }
             finally
             {
-                document.SaveAs2(file_name, word.WdSaveFormat.wdFormatDocumentDefault);
+                document.Saved = true;
+                document.SaveAs(file_name + ".pdf", word.WdExportFormat.wdExportFormatPDF);
                 document.Close();
                 application.Quit();
             }

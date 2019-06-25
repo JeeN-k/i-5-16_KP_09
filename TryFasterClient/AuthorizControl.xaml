@@ -33,8 +33,9 @@
         <Label FontSize="48" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Yandex Sans Text Bold" VerticalAlignment="Center">Авторизация</Label>
 
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10">
-            <Button Name="BtnEnter" FontSize="32" HorizontalAlignment="Center" Click="BtnEnter_Click" TabIndex="3">Вход</Button>
-            <TextBlock Name="RegBut"  FontSize="16" Cursor="Hand" MouseDown="RegBut_MouseDown" Foreground="#FF0009C5" FontStretch="ExtraExpanded">Регистрация</TextBlock>
+            <Button Name="BtnEnter" FontSize="32" Width="150" HorizontalAlignment="Center" Click="BtnEnter_Click" TabIndex="3">Вход</Button>
+            <TextBlock Name="RegBut"  HorizontalAlignment="Center" FontSize="16" Cursor="Hand" MouseDown="RegBut_MouseDown" Foreground="#FF0009C5" FontStretch="ExtraExpanded">Регистрация</TextBlock>
+            <TextBlock Name="btnSetConnect"  HorizontalAlignment="Center" FontSize="16" Cursor="Hand" MouseDown="BtnSetConnect_MouseDown" Foreground="#FF0009C5" FontStretch="ExtraExpanded">Настройка подключения</TextBlock>
         </StackPanel>
         <WrapPanel Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,0">
             <CheckBox Name="cbAutoEnter" VerticalAlignment="Center" HorizontalAlignment="Right" TabIndex="2"></CheckBox>

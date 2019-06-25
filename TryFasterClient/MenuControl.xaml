@@ -12,10 +12,8 @@
             <Image Name="ImgAccount" Grid.Column="1" Source="Resources/AccountLogo.png" Margin="10, 10, 10, 10" Cursor="Hand" Width="150" Height="150" MouseDown="ImgAccount_MouseDown" MouseEnter="ImgAccount_MouseEnter" MouseLeave="ImgAccount_MouseLeave" Visibility="Visible"/>
             <Image Name="ImgDelivery" Grid.Column="2" Source="Resources/DeliveryLogo.png" Margin="10, 10, 10, 10" Cursor="Hand" Width="150" Height="150" MouseDown="ImgDelivery_MouseDown" MouseEnter="ImgDelivery_MouseEnter" MouseLeave="ImgDelivery_MouseLeave" Visibility="Collapsed"/>
             <Image Name="ImgBooking" Grid.Column="0" Grid.Row="1" Source="Resources/BookingLogo.png" Margin="10, 10, 10, 10" Cursor="Hand" Width="150" Height="150" MouseDown="ImgBooking_MouseDown" MouseEnter="ImgBooking_MouseEnter" MouseLeave="ImgBooking_MouseLeave" Visibility="Collapsed"/>
-            <Image Name="ImgRace" Grid.Column="1" Grid.Row="1" Source="Resources/RaceLogo.png" Margin="10, 10, 10, 10" Cursor="Hand" Width="150" Height="150" MouseDown="ImgRace_MouseDown" MouseEnter="ImgRace_MouseEnter" MouseLeave="ImgRace_MouseLeave" Visibility="Collapsed"/>
             <Image Name="ImgSettings" Grid.Column="2" Grid.Row="1" Source="Resources/SettingsLogo.png" Margin="10, 10, 10, 10" Cursor="Hand" Width="150" Height="150" MouseDown="ImgSettings_MouseDown" MouseEnter="ImgSettings_MouseEnter" MouseLeave="ImgSettings_MouseLeave" Visibility="Collapsed"/>
             <Image Name="ImgAdmin" Grid.Column="0" Grid.Row="2" Source="Resources/AdminLogo.png" Margin="10, 10, 10, 10" Cursor="Hand" Width="150" Height="150" MouseDown="ImgAdmin_MouseDown" MouseEnter="ImgAdmin_MouseEnter" MouseLeave="ImgAdmin_MouseLeave" Visibility="Collapsed"/>
         </WrapPanel>
-        <Button Name="btnTest" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Click="BtnTest_Click">Test</Button>
     </Grid>
 </UserControl>

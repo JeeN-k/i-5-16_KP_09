@@ -6,8 +6,7 @@ namespace TryFasterClient
 {
     class DBConAct
     {
-        public static SqlConnection sql = new SqlConnection("Data Source = 31.31.198.31; Initial Catalog = u0695785_KarateBase;" +
-             "Persist Security Info = true; User ID = u0695785_KaratePatsan; Password = \"Karate228\""); //строка подключения
+        public static SqlConnection sql = new SqlConnection(); //строка подключения        
         public static SqlCommand cmd = new SqlCommand(string.Empty, sql);
         //Добавление названия и типа процедуры 
         private static void spConfiguration(string spName)
@@ -16,13 +15,25 @@ namespace TryFasterClient
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
         }
 
-        public static string execScalar()
+        public static string execScalar() // функция возвращающая значение ячейки
         {
-            sql.Open();
-            cmd.CommandType = System.Data.CommandType.Text;
-            string scalar = cmd.ExecuteScalar().ToString();
-            sql.Close();
-            return scalar;
+            try
+            {
+                sql.Open();
+                cmd.CommandType = System.Data.CommandType.Text;
+                string scalar = cmd.ExecuteScalar().ToString();
+                sql.Close();
+                return scalar;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка");
+                return null;
+            }
+            finally
+            {
+                sql.Close();
+            }
         }
 
         //Вызов процедуры добавления данных в таблице "AppUser"

@@ -15,18 +15,18 @@ namespace TryFasterClient
         string qrBooking = "select id_booking, Booking_Date as 'Дата бронирования', Surn_Client as 'Фамилия', Name_Client as  'Имя', " +
                 "Booking_Time as 'Время бронирования', " +
                 "Booking_Count as 'Количество людей' from booking join client on client_id = id_Client"; // запрос для вывода таблицы
-        public BookingList()
+        public BookingList() 
         {
             InitializeComponent();
             lblCaptionList.Content = "Список бронирований пользователя " + AuthorizControl.UserLogin;
         }
 
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        private void BtnBack_Click(object sender, RoutedEventArgs e) // На страницу бронирований
         {
             LinkControl.Link(new BookingControl());
         }
 
-        private void ChbFutureBook_Unchecked(object sender, RoutedEventArgs e)
+        private void ChbFutureBook_Unchecked(object sender, RoutedEventArgs e) // Изменение чекбоксов
         {
             qrBooking = "select id_booking, Booking_Date as 'Дата бронирования', Surn_Client as 'Фамилия', Name_Client as  'Имя', " +
                 "Booking_Time as 'Время бронирования', " +
@@ -84,7 +84,7 @@ namespace TryFasterClient
 
         }
 
-        private void DgBookList_Loaded(object sender, RoutedEventArgs e)
+        private void DgBookList_Loaded(object sender, RoutedEventArgs e) // загрузка таблицы
         {
             loadToDg();
         }

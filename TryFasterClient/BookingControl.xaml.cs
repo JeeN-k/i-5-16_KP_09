@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Threading;
@@ -18,6 +15,7 @@ namespace TryFasterClient
         string[] hours = new string[13];
         string[] dates = new string[] { DateTime.Now.ToString("dd.MM.yyyy"), DateTime.Now.ToString("dd.MM.yyyy"), DateTime.Now.ToString("dd.MM.yyyy"),
             DateTime.Now.ToString("dd.MM.yyyy"), DateTime.Now.ToString("dd.MM.yyyy"), DateTime.Now.ToString("dd.MM.yyyy") }; // массив с датами для бронирования
+        string docDate, docTime, docClient;
 
         int timeCompare; // переменная для сравнения времени
         DateTime fullDateTime; // полное время бронирования
@@ -28,7 +26,7 @@ namespace TryFasterClient
             InitializeComponent();
         }
 
-        private void ReserveRace()
+        private void ReserveRace() // Процесс брони
         {
             try
             {
@@ -48,14 +46,20 @@ namespace TryFasterClient
                     if (checkBook == 0)
                     {
                         DBConAct.Booking_Insert(dateBook, timeHourBook + ":" + timeMinBook, Convert.ToInt32(cbCountPeople.SelectedValue.ToString()), clientId);
-                        DBConAct.cmd.CommandText = "select CONCAT(name_Client + ' ', surn_client) from client where id_client = " + clientId;
-                        string clientName = DBConAct.execScalar();
-                        this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(delegate ()
-                        {
-                            DataWord.BookDocument(dateBook, timeHourBook + ":" + timeMinBook, cbCountPeople.SelectedValue.ToString(), clientName);
-                        }));
                         MessageBox.Show("Вы забронированы на дату: " + dateBook + "\nВремя: " + timeHourBook + ":" + timeMinBook, "Успешное бронирование!",
                             MessageBoxButton.OK, MessageBoxImage.Information);
+                        DBConAct.cmd.CommandText = "select CONCAT(name_Client + ' ', surn_client) from client where id_client = " + clientId;
+                        string clientName = DBConAct.execScalar();
+                        docDate = dateBook;
+                        docTime = timeHourBook + ":" + timeMinBook;
+                        docClient = clientName;
+
+                        Thread trd = new Thread(getDocs)
+                        {
+                            IsBackground = true,
+                            Priority = ThreadPriority.Normal
+                        };
+                        trd.Start();
                     }
                     else MessageBox.Show("У вас уже имеется бронирование на это время!\nИзмените дату или время!", "Повторное бронирование!", MessageBoxButton.OK, MessageBoxImage.Warning);
 
@@ -71,19 +75,28 @@ namespace TryFasterClient
             }
         }
 
-        private void BtnReserve_Click(object sender, RoutedEventArgs e)
+        private void getDocs() // Поулчение документов
+        {
+            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(delegate ()
+            {
+                DataWord.BookDocument(docDate, docTime, cbCountPeople.SelectedValue.ToString(), docClient);
+                DataPDF.BookDocument(docDate, docTime, cbCountPeople.SelectedValue.ToString(), docClient);
+            }));
+        }
+
+        private void BtnReserve_Click(object sender, RoutedEventArgs e) // Запуск потока бронирования
         {
             Thread trd = new Thread(new ThreadStart(ReserveRace));
             trd.SetApartmentState(ApartmentState.STA);
             trd.Start();
         }
 
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        private void BtnBack_Click(object sender, RoutedEventArgs e) // В меню
         {
             LinkControl.Link(new MenuControl());
         }
 
-        private void ToBookingList_Click(object sender, RoutedEventArgs e)
+        private void ToBookingList_Click(object sender, RoutedEventArgs e) // К листу бронирований
         {
             LinkControl.Link(new BookingList());
         }
@@ -130,7 +143,7 @@ namespace TryFasterClient
             }
         }
 
-        private void UcBooking_Loaded(object sender, RoutedEventArgs e)
+        private void UcBooking_Loaded(object sender, RoutedEventArgs e) // Загрузка  страницы
         {
             lblUserName.Content = "Бронь для " + AuthorizControl.UserLogin;
             for (int i = 1; dates.Length > i; i++)
@@ -156,7 +169,7 @@ namespace TryFasterClient
             cbTimeMinBooking.SelectedIndex = 0;
         }
 
-        private void CbDateBooking_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CbDateBooking_SelectionChanged(object sender, SelectionChangedEventArgs e) // Изменение данных в комбобоксе
         {
             cbCheck();
         }

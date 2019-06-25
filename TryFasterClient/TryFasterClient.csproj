@@ -92,8 +92,12 @@
     <Compile Include="BookingList.xaml.cs">
       <DependentUpon>BookingList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConnectControl.xaml.cs">
+      <DependentUpon>ConnectControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Crypt.cs" />
     <Compile Include="DataExcel.cs" />
+    <Compile Include="DataPDF.cs" />
     <Compile Include="DataWord.cs" />
     <Compile Include="DeliveryControl.xaml.cs">
       <DependentUpon>DeliveryControl.xaml</DependentUpon>
@@ -101,9 +105,6 @@
     <Compile Include="DynamicObject.cs" />
     <Compile Include="MenuControl.xaml.cs">
       <DependentUpon>MenuControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RaceControl.xaml.cs">
-      <DependentUpon>RaceControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Registr.cs" />
     <Compile Include="RegistrationControl.xaml.cs">
@@ -142,6 +143,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ConnectControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DeliveryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,10 +156,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MenuControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RaceControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

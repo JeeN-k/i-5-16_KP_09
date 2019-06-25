@@ -4,8 +4,7 @@ using System.Windows.Controls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Threading;
+
 namespace TryFasterClient
 {
     /// <summary>
@@ -26,7 +25,7 @@ namespace TryFasterClient
             InitializeComponent();
         }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        private void Grid_Loaded(object sender, RoutedEventArgs e) // Загрузка страницы
         {
             try
             {
@@ -71,7 +70,7 @@ namespace TryFasterClient
                     TextBlock newLabel = new TextBlock();
                     newLabel.Text = DynamicObject.Parameters[i];
                     newLabel.FontSize = 12;
-                    newLabel.Visibility = Visibility.Visible;                    
+                    newLabel.Visibility = Visibility.Visible;
                     newLabel.VerticalAlignment = VerticalAlignment.Center;
                     Grid.SetRow(newLabel, i);
                     this.GridLabel.Children.Add(newLabel);
@@ -185,27 +184,12 @@ namespace TryFasterClient
             DBConAct.sql.Close();
         }
 
-        private void Word_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Excel_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void PDF_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e) // В меню
         {
             LinkControl.Link(new MenuControl());
         }
 
-        private void DG_Tables_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        private void DG_Tables_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e) // Изменение выбранной ячейки
         {
             try
             {
@@ -240,7 +224,7 @@ namespace TryFasterClient
             catch { }
         }
 
-        private void CbTables_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CbTables_SelectionChanged(object sender, SelectionChangedEventArgs e) //Изменение выбранной таблицы
         {
             try
             {
@@ -255,7 +239,7 @@ namespace TryFasterClient
             //DG_Tables.Columns[0].Visibility = Visibility.Hidden;
         }
 
-        private void BtnAdd_Click_1(object sender, RoutedEventArgs e)
+        private void BtnAdd_Click_1(object sender, RoutedEventArgs e) // Добавление данных в  БД
         {
             Int32[] FKIDS = new Int32[9];
             string[] timeForm = new string[9];
@@ -350,7 +334,7 @@ namespace TryFasterClient
             catch (Exception ex) { MessageBox.Show(ex.ToString(), "Ошибка добавления!"); }
         }
 
-        private void BtnUpd_Click(object sender, RoutedEventArgs e)
+        private void BtnUpd_Click(object sender, RoutedEventArgs e) //Обновление данных в БД
         {
             Int32[] FKIDS = new Int32[9];
             string[] timeForm = new string[9];
@@ -440,7 +424,7 @@ namespace TryFasterClient
             catch (Exception ex) { MessageBox.Show(ex.ToString(), "Ошибка добавления!"); }
         }
 
-        private void BtnDlt_Click(object sender, RoutedEventArgs e)
+        private void BtnDlt_Click(object sender, RoutedEventArgs e) //УДаление данных из БД
         {
             try
             {

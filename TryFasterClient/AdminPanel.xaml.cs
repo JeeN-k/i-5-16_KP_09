@@ -14,9 +14,9 @@ namespace TryFasterClient
     {
 
         string[] tables = new string[] {"Клиенты", "Бронирование", "Чеки", "Сотрудники", "Поставки", "Должности",
-            "Товары на складе", "Транспорт", "Ремонт", "Заезд", "Заезды клиентов", "Пользователи", "Транспорт заезда"};
+            "Товары на складе", "Транспорт", "Ремонт", "Заезд", "Заезды клиентов", "Пользователи", "Транспорт заезда"}; // Таблицы
 
-        private static SqlCommand scmd = new SqlCommand("", DBConAct.sql);
+        private static SqlCommand scmd = new SqlCommand("", DBConAct.sql); 
         string idrole = "1";
         string[] roles = new string[30];
         string[] usRoles = new string[30];
@@ -69,7 +69,7 @@ namespace TryFasterClient
             }
         }
 
-        private void getCbItems()
+        private void getCbItems() // Загрузка данных в комбобоксы
         {
             try
             {
@@ -108,7 +108,7 @@ namespace TryFasterClient
             }
         }
 
-        private void UcAdmin_Loaded(object sender, RoutedEventArgs e)
+        private void UcAdmin_Loaded(object sender, RoutedEventArgs e) // загрузка страницы
         {
             getCbItems();
             cbRole.ItemsSource = newUsRoles;
@@ -118,7 +118,7 @@ namespace TryFasterClient
             chckBoxFill();
         }
 
-        private void chckBoxFill()
+        private void chckBoxFill() // Заполнение чек боксов
         {
             try
             {
@@ -137,7 +137,7 @@ namespace TryFasterClient
             }
         }
 
-        private void CbRoles_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CbRoles_SelectionChanged(object sender, SelectionChangedEventArgs e) // Изменение выбранного в комбобоксе
         {
             if ((string)cbRoles.SelectedValue != "<Новая роль>")
             {
@@ -161,7 +161,7 @@ namespace TryFasterClient
             }
         }
 
-        private void BtnRoleUpdate_Click(object sender, RoutedEventArgs e)
+        private void BtnRoleUpdate_Click(object sender, RoutedEventArgs e) // Обновление роли
         {
             try
             {
@@ -176,7 +176,7 @@ namespace TryFasterClient
             }
         }
 
-        private void BtnRoleAdd_Click(object sender, RoutedEventArgs e)
+        private void BtnRoleAdd_Click(object sender, RoutedEventArgs e) // Добавление роли
         {
             try
             {
@@ -196,7 +196,7 @@ namespace TryFasterClient
             }
         }
 
-        private void BtnRoleCancel_Click(object sender, RoutedEventArgs e)
+        private void BtnRoleCancel_Click(object sender, RoutedEventArgs e) // Отмена изменения
         {
             cbRoles.Visibility = Visibility.Visible;
             tbRoles.Visibility = Visibility.Collapsed;
@@ -206,13 +206,13 @@ namespace TryFasterClient
             UcAdmin_Loaded(sender, e);
         }
 
-        private void CbUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CbUsers_SelectionChanged(object sender, SelectionChangedEventArgs e) // Изменение выбранного
         {
 
             getTextToLbl();
         }
 
-        private void getTextToLbl()
+        private void getTextToLbl() // Заполнение текса в лейблы
         {
             try
             {
@@ -229,7 +229,7 @@ namespace TryFasterClient
             }
         }
 
-        private void BtnUserUpd_Click(object sender, RoutedEventArgs e)
+        private void BtnUserUpd_Click(object sender, RoutedEventArgs e) // Обновлнение данных пользователя
         {
             btnAccept.Visibility = Visibility.Visible;
             btnUserCancel.Visibility = Visibility.Visible;
@@ -251,7 +251,7 @@ namespace TryFasterClient
             tbPass.Text = "";
         }
 
-        private void BtnAccept_Click(object sender, RoutedEventArgs e)
+        private void BtnAccept_Click(object sender, RoutedEventArgs e) // Подтверждение изменений
         {
             try
             {
@@ -308,7 +308,7 @@ namespace TryFasterClient
             }
         }
 
-        private void BtnUserCancel_Click(object sender, RoutedEventArgs e)
+        private void BtnUserCancel_Click(object sender, RoutedEventArgs e) // Отмена редактирования
         {
             btnAccept.Visibility = Visibility.Collapsed;
             btnUserCancel.Visibility = Visibility.Collapsed;
@@ -323,7 +323,7 @@ namespace TryFasterClient
             cbUsers.IsEnabled = true;
         }
 
-        private void BtnRoleDelete_Click(object sender, RoutedEventArgs e)
+        private void BtnRoleDelete_Click(object sender, RoutedEventArgs e) // Удаление роли
         {
             int roleid;
             try
@@ -340,7 +340,7 @@ namespace TryFasterClient
             }
         }
 
-        private void BtnBackToMenu_Click(object sender, RoutedEventArgs e)
+        private void BtnBackToMenu_Click(object sender, RoutedEventArgs e) // В меню
         {
             LinkControl.Link(new MenuControl());
         }

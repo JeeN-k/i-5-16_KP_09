@@ -18,7 +18,7 @@ namespace TryFasterClient
             InitializeComponent();
         }
 
-        private void TbLoginClient_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void TbLoginClient_PreviewTextInput(object sender, TextCompositionEventArgs e) // Контроль ввода логина
         {
             if (char.IsDigit(e.Text, 0)) return;
             e.Handled = true;
@@ -26,13 +26,13 @@ namespace TryFasterClient
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void TbSurnClient_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void TbSurnClient_PreviewTextInput(object sender, TextCompositionEventArgs e) // Контроль ввода фамилии
         {
             if (char.IsLetter(e.Text, 0)) return;
             e.Handled = true;
         }
 
-        private void BtnAcceptChange_Click(object sender, RoutedEventArgs e)
+        private void BtnAcceptChange_Click(object sender, RoutedEventArgs e) // Подтвердждение изменения данных
         {
             Int32 logchk; // проверка на уникальность логина
             string passUser = ""; // пароль пользователя
@@ -96,7 +96,7 @@ namespace TryFasterClient
             }
         }
 
-        private void BtnCancelChange_Click(object sender, RoutedEventArgs e)
+        private void BtnCancelChange_Click(object sender, RoutedEventArgs e) // отмена изменения
         {
             lblUserName.Visibility = Visibility.Visible;
             lblSurname.Visibility = Visibility.Visible;
@@ -114,7 +114,7 @@ namespace TryFasterClient
             btnAcceptChange.Visibility = Visibility.Collapsed;
         }
 
-        private void BtnChangeData_Click(object sender, RoutedEventArgs e)
+        private void BtnChangeData_Click(object sender, RoutedEventArgs e) // Запрос на изменение
         {
             lblUserName.Visibility = Visibility.Collapsed;
             lblSurname.Visibility = Visibility.Collapsed;
@@ -141,7 +141,7 @@ namespace TryFasterClient
             mobNum = lblMobNum.Content.ToString();
         }
 
-        private void BtnChangePass_Click(object sender, RoutedEventArgs e)
+        private void BtnChangePass_Click(object sender, RoutedEventArgs e) // изменение пароля
         {
             Int32 passChck;
             int idUser;
@@ -181,12 +181,12 @@ namespace TryFasterClient
             }
         }
 
-        private void BtnToMenu_Click(object sender, RoutedEventArgs e)
+        private void BtnToMenu_Click(object sender, RoutedEventArgs e) // в меню
         {
             LinkControl.Link(new MenuControl());
         }
 
-        private void UcAccount_Loaded(object sender, RoutedEventArgs e)
+        private void UcAccount_Loaded(object sender, RoutedEventArgs e) // загрузка страницы
         {
             try
             {

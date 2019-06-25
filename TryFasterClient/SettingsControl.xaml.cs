@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.IO;
 using System.Windows.Media;
-using System.Linq;
 
 namespace TryFasterClient
 {
@@ -22,7 +21,7 @@ namespace TryFasterClient
             InitializeComponent();
         }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        private void Grid_Loaded(object sender, RoutedEventArgs e) // Загрузка страницы
         {
             Registr.ConfigurationGet();
             tbPath.Text = Registr.DirPath;
@@ -50,12 +49,12 @@ namespace TryFasterClient
 
         }
 
-        private void Close_Click(object sender, RoutedEventArgs e)
+        private void Close_Click(object sender, RoutedEventArgs e) // в меню
         {
             LinkControl.Link(new MenuControl());
         }
 
-        private void Save_Click(object sender, RoutedEventArgs e)
+        private void Save_Click(object sender, RoutedEventArgs e) //Сохранение настроек
         {
             try
             {
@@ -130,7 +129,7 @@ namespace TryFasterClient
             catch { MessageBox.Show("Ошибка сохранения!"); }
         }
 
-        private void BtBrowse_Click(object sender, RoutedEventArgs e)
+        private void BtBrowse_Click(object sender, RoutedEventArgs e) //Выбор пути сохранения отчетов
         {
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
             System.Windows.Forms.DialogResult result = dialog.ShowDialog();
@@ -140,7 +139,7 @@ namespace TryFasterClient
             }
         }
 
-        private void BtnUpDown_Click(object sender, RoutedEventArgs e)
+        private void BtnUpDown_Click(object sender, RoutedEventArgs e) // Манипуляция с нумерик ап даун
         {
             switch ((sender as Button).Name)
             {

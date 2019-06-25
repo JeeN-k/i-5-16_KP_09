@@ -9,6 +9,7 @@ namespace TryFasterClient
         public static string UI = "Empty", PW = "Empty", SE = "Empty";//логин пароль и запоминанее пароля в реестре
         public static string OrganizationName = "", DirPath = "", WinRes = "", BordThik = "", BordColor = "";//название организации и путь сохранения файлов
         public static double DocLM = 0, DocTM = 0, DocRM = 0, DocBM = 0;//отсутпы сохраненные в реестре        
+        public static string DSIP = "Empty", IC = "Empty", DBUL = "Empty", DBUP = "Empty";
 
         static public void Registry_Get()//получение параметров
         {
@@ -25,6 +26,44 @@ namespace TryFasterClient
                 key.SetValue("UI", String.Empty);
                 key.SetValue("PW", String.Empty);
                 key.SetValue("SE", String.Empty);
+            }
+        }
+
+        static public void Connect_Get() //Получение данных подключения
+        {
+            RegistryKey registry = Registry.CurrentUser;
+            RegistryKey key = registry.CreateSubKey("TryFaster");
+            try
+            {
+                DSIP = key.GetValue("DSIP").ToString();
+                IC = key.GetValue("IC").ToString();
+                DBUL = key.GetValue("DBUL").ToString();
+                DBUP = key.GetValue("DBUP").ToString();
+            }
+            catch
+            {
+                key.SetValue("DSIP", String.Empty);
+                key.SetValue("IC", String.Empty);
+                key.SetValue("DBUL", String.Empty);
+                key.SetValue("DBUP", String.Empty);
+            }
+        }
+
+        static public void Connect_Set(string dsip, string ic, string dbul, string dbup)//установка параметров подключения
+        {
+            RegistryKey registry = Registry.CurrentUser;
+            RegistryKey key = registry.CreateSubKey("TryFaster");
+            try
+            {
+                key.SetValue("DSIP", dsip);
+                key.SetValue("IC", ic);
+                key.SetValue("DBUL", dbul);
+                key.SetValue("DBUP", dbup);
+                Registry_Get();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 

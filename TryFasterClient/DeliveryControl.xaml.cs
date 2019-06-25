@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 
 namespace TryFasterClient
 {
@@ -46,7 +45,7 @@ namespace TryFasterClient
 
         }
 
-        private void CbSelectTransport_Unchecked(object sender, RoutedEventArgs e)
+        private void CbSelectTransport_Unchecked(object sender, RoutedEventArgs e) // изменения чекбоксов
         {
             if (cbSelectTransport.IsChecked == true)
             {
@@ -60,7 +59,7 @@ namespace TryFasterClient
             }
         }
 
-        private void CbSelectProduct_Unchecked(object sender, RoutedEventArgs e)
+        private void CbSelectProduct_Unchecked(object sender, RoutedEventArgs e) // Изменение чекбоксов
         {
             if (cbSelectProduct.IsChecked == true)
             {
@@ -74,7 +73,7 @@ namespace TryFasterClient
             }
         }
 
-        private void BtnAddDelivery_Click(object sender, RoutedEventArgs e)
+        private void BtnAddDelivery_Click(object sender, RoutedEventArgs e) // Добавление поставки
         {
             string invoice_Num;  // номер накланой
             int repeatProd = 0; // проверка на повторение продукта                                     
@@ -195,17 +194,13 @@ namespace TryFasterClient
             }
         }
 
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        private void BtnBack_Click(object sender, RoutedEventArgs e) // В меню
         {
             LinkControl.Link(new MenuControl());
         }
 
-        private void ToDeliveryList_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
-
-        private void BtnAddToTable_Click(object sender, RoutedEventArgs e)
+        private void BtnAddToTable_Click(object sender, RoutedEventArgs e) // Добваление продукта в таблицу
         {
             if (cbDeliveryType.SelectedIndex == 0)
             {
@@ -246,7 +241,7 @@ namespace TryFasterClient
             }
         }
 
-        private void BtnDeleteProduct_Click(object sender, RoutedEventArgs e)
+        private void BtnDeleteProduct_Click(object sender, RoutedEventArgs e) //Удаление товара из таблицы
         {
             if (cbDeliveryType.SelectedIndex == 0)
             {
@@ -266,7 +261,7 @@ namespace TryFasterClient
             }
         }
 
-        private void BtnClearTable_Click(object sender, RoutedEventArgs e)
+        private void BtnClearTable_Click(object sender, RoutedEventArgs e) // Очистить таблицу
         {
             if (cbDeliveryType.SelectedIndex == 0) dgProductList.Items.Clear();
             else dgTransportList.Items.Clear();
@@ -290,7 +285,7 @@ namespace TryFasterClient
             }
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private void UserControl_Loaded(object sender, RoutedEventArgs e) //Загрузка страницы
         {
             comboboxLoad("select * from product", "product", 1, cbProductName);
             comboboxLoad("select * from transport", "transport", 1, cbTransportName);

@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Net;
 using System.Threading;
 
 namespace TryFasterClient
@@ -13,18 +12,14 @@ namespace TryFasterClient
     public partial class AuthorizControl : UserControl
     {
 
-        public static int Role;
-        public static string RoleName;
-        public static string UserLogin;
+        public static int Role; // код Роли
+        public static string RoleName; // Название роли
+        public static string UserLogin; // Имя пользователя
 
         public AuthorizControl()
         {
             InitializeComponent();
-            if (!CheckForInternetConnection())
-            {
-                MessageBox.Show("Не имеется интернет соединения!", "Internet connection error");
-                Application.Current.Shutdown();
-            }
+
             Registr.Registry_Get();//получение значений из реестра
             if (Registr.SE == "1")//если запоминание пароля работает
             {
@@ -36,28 +31,13 @@ namespace TryFasterClient
                 cbAutoEnter.IsChecked = false;
         }
 
-        public static bool CheckForInternetConnection()
-        {
-            try
-            {
-                using (var client = new WebClient())
-                using (client.OpenRead("http://clients3.google.com/generate_204"))
-                {
-                    return true;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-        }
 
-        private void RegBut_MouseDown(object sender, MouseButtonEventArgs e)
+        private void RegBut_MouseDown(object sender, MouseButtonEventArgs e) // К регистрации
         {
             LinkControl.Link(new RegistrationControl());
         }
 
-        private void Auth()
+        private void Auth() // Авторизация
         {
             try
             {
@@ -113,14 +93,13 @@ namespace TryFasterClient
             }
         }
 
-        private void BtnEnter_Click(object sender, RoutedEventArgs e)
+        private void BtnEnter_Click(object sender, RoutedEventArgs e) // Запуск потока авторизации
         {
-            Thread trd = new Thread(new ThreadStart(Auth));
-            trd.SetApartmentState(ApartmentState.STA);
+            Thread trd = new Thread(new ThreadStart(Auth));            
             trd.Start();
         }
 
-        private void UserControl_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void UserControl_PreviewKeyDown(object sender, KeyEventArgs e) // Нажатие на ентер приводит в действие кнопку
         {
             if (e.Key == Key.Enter)
             {
@@ -131,16 +110,10 @@ namespace TryFasterClient
                 e.Handled = false;
         }
 
-        private void BtnCheck_Click(object sender, RoutedEventArgs e)
+
+        private void BtnSetConnect_MouseDown(object sender, MouseButtonEventArgs e) // На страницу подключения
         {
-            string[] hours = new string[13];
-            string s = "";
-            for (int i = 0; i <= 12; i++)
-            {
-                hours[i] = (i + 10).ToString();
-                s += hours[i] + "\n";
-            }
-            MessageBox.Show(s);
+            LinkControl.Link(new ConnectControl());
         }
     }
 }

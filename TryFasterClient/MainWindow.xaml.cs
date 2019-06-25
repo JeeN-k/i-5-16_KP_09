@@ -64,6 +64,10 @@ namespace TryFasterClient
                     break;
             }
 
+            Registr.Connect_Get();
+            DBConAct.sql.ConnectionString = "Data Source = " + Registr.DSIP + "; Initial Catalog = " + Registr.IC + "; Persist Security Info = true; " +
+                    "User ID = " + Registr.DBUL + "; Password = \"" + Registr.DBUP + "\"";
+
             //else
             //{
             //    MessageBox.Show("У вас нет лицензии!!");
@@ -71,7 +75,7 @@ namespace TryFasterClient
             //}
         }
 
-        private void BtnClose_MouseDown(object sender, MouseButtonEventArgs e)
+        private void BtnClose_MouseDown(object sender, MouseButtonEventArgs e) //Зарытие окна
         {
             Application.Current.Shutdown();
         }
@@ -102,12 +106,12 @@ namespace TryFasterClient
                 this.DragMove();
         }
 
-        private void BtnHome_MouseDown(object sender, MouseButtonEventArgs e)
+        private void BtnHome_MouseDown(object sender, MouseButtonEventArgs e) // Кнопка в меню
         {
             LinkControl.Link(new MenuControl());
         }
 
-        private void BtnChangeUser_MouseDown(object sender, MouseButtonEventArgs e)
+        private void BtnChangeUser_MouseDown(object sender, MouseButtonEventArgs e) // Сменить пользователя
         {
             MessageBoxResult s = MessageBox.Show("Вы уверены, что хотите сменить пользователя?", "Смена пользователя", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (s == MessageBoxResult.Yes)
